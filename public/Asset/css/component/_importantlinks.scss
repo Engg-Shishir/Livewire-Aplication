@@ -1,0 +1,132 @@
+header{
+    margin-bottom: 1px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    .importantLinks{
+        height: 9vh;
+        width: 100%;
+        background-color: rgb(107, 0, 45);
+        position: relative;
+        // Social links
+        .links{
+          cursor: pointer;
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #fff;
+          padding: 0 10px;
+          i,a{
+             font-size: 13px;
+             margin: 0 5px;
+             transition: .3s;
+             color: #fff; 
+             &:hover{
+                 margin-left: 10px;
+             }
+          }
+          .top{
+            width: 100%;
+            display: flex;
+            display: none;
+          }
+          .bottom{
+              display: flex;
+              color: white;
+          }
+        }
+        // event photo
+        .event{
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right: 5%;
+            height: 100%;
+            height: 80px;
+            width: 80px;
+            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+            //border-radius: 50%;
+            z-index: 2;
+            .image{
+                img{
+                   height: 80px;
+                   width: 80px;
+                   //border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+
+@mixin md-header_importantlinks {
+    header{
+        margin: 0;
+        overflow: hidden;
+        .importantLinks{
+            height: 10vh;
+            position: relative;
+            // Social links
+            .links{
+              left:5%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: space-evenly;
+              .top,.bottom{
+                  width: 100%;
+                  display: flex;
+              }
+              i,a{
+                 font-size: 15px;
+                 margin: 0 10px;
+                 color: white;
+              }
+
+              .bottom{
+                  justify-content: flex-end;
+              }
+            }
+            // event photo
+            .event{
+                right: 2%;
+                height: 100px;
+                width: 120px;
+                background-color: black;
+                clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+                .image{
+                    
+                    img{
+                        height: 100px;
+                        width: 120px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+@mixin header_importantlinks {
+    header{
+        margin: 0;
+        overflow: hidden;
+        .importantLinks{
+            height: 10vh;
+            position: relative;
+            // Social links
+            .links{
+              left: 10%;
+            }
+            .event{
+                right: 10%;
+            }
+        }
+    }
+}

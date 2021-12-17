@@ -1,0 +1,421 @@
+.sticky{
+    .containers{
+        .holder{
+            .navigation{
+                position: absolute;
+                top: 100%;
+                width: 100%;
+                left: 0;
+                right: 0;
+                transition: display .3s;
+                pointer-events: painted;
+                z-index: 500;
+                display: none;
+                cursor: pointer;
+                background-color: #003029;
+                max-height: 55vh !important;
+                overflow-y: auto;
+                scrollbar-width: thin;
+                    .main-ul{
+                        width: 100% !important;
+                        li.main-li{
+                            position: relative;
+                            width: 100% !important;
+                            margin-bottom: 2px;
+                            border-bottom: 1px solid #868686;
+                            cursor: pointer;
+                            input{
+                                display: none;
+                            }
+                            label{
+                                width: 100% !important;
+                                display: flex;
+                                align-items: center;
+                                justify-content: space-between;
+                                cursor: pointer;
+                                padding: 10px;
+                                transition: .3s;
+                                span{
+                                 color: rgb(255, 255, 255);
+                                 transition: .3s;
+                                 font-weight: 400;
+                                }
+                                i{
+                                    transform: rotate(0deg);
+                                    transition: .3s;
+                                    color: rgb(255, 255, 255);
+                                    z-index: 2;
+                                }
+                            }
+
+                            label.active{
+                                background-color: #500222;
+                                span{
+                                    margin-left: 5px;
+                                    color: #ffffff !important;
+                                }
+                                i{
+                                    transform: rotate(-180deg);
+                                    color: #ffffff !important;
+                                }
+                            }
+                            
+                            a{
+                                width: 100% !important;
+                                display: block;
+                                color: rgb(255, 255, 255);
+                                padding: 10px;
+                                transition: .3s;
+                                font-weight: 400;
+                            }
+                                
+                              
+
+                           &:hover{  
+                               background-color: #01443a;
+                           }
+                            &:hover > label > span, &:hover > a{
+                                margin-left: 5px;
+                            }
+
+                            &:hover > label > i{
+                                transform: rotate(-180deg);
+                            }
+                        }
+                        li.main-li.drop{
+                            ul.dropdowns{
+                                background-color: rgb(56, 56, 56);
+                                display: none;
+                                li.drop-li{
+                                    padding-left: 25px;
+                                    i{
+                                        color: #fff;
+                                    }
+                                    &:hover > label > span , &:hover > a{
+                                        margin-left: 5px;
+                                        color: #860038;
+                                    }
+        
+                                    &:hover > label > i{
+                                        transform: rotate(-180deg);
+                                        color: #6b002d;
+                                    }
+
+                                    ul.second{
+                                        display: none;
+                                    }
+                                }
+                            }
+                        }
+                        li.main-li.megas{  
+                            .mega{
+                                background-color: rgb(56, 56, 56);
+                                display: none;
+                                width: 100%;
+                                height: 30vh;
+                                overflow-y: scroll;
+                                scrollbar-width: thin;
+                                .contents{
+                                    height: 100%;
+                                    width: 100%;
+                                    padding: 10px;
+                                    .top,.bottom{
+                                        width: 100%;
+                                        display: flex;
+                                        ul{
+                                            width: 100%;
+                                            height: 100%;
+                                            li{
+                                                display: flex;
+                                                align-items: center;
+                                                &:hover > a{
+                                                    margin-left: 5px;
+                                                    color: #860038;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        li.main-li:last-child{
+                            text-align: center;
+                            border: none;
+                            padding: 10px 100px;
+                            .btn{
+                                display: inline-block;
+                                padding: .5rem 1.3rem;
+                                font-size: .7rem;
+                                background-color:  #6b002d;
+                                border-radius: 2rem;
+                                line-height: 1;
+                                margin: 0 .2rem;
+                                transition: .3s;
+                                text-transform: uppercase;
+                                font-weight: bold;
+                                color: #ffffff;
+                            }
+                        }
+                    }
+                
+            }
+
+            /* Works on Firefox*/
+            .navigation{
+                scrollbar-width: thin;
+                scrollbar-color: #f5f1f3 #003029;
+            }
+              
+            /* Works on Chrome, Edge, and Safari */
+            .navigation::-webkit-scrollbar {
+            width: 10px;
+            }
+            .navigation::-webkit-scrollbar-button {
+            width: 17px;
+            height: 17px;
+            }
+            .navigation::-webkit-scrollbar-track {
+            background: #003029;
+            }
+            
+            .navigation::-webkit-scrollbar-thumb {
+            background-color: #f5f1f3;
+            border-radius: 20px;
+            border: 2px solid #003029;
+            }
+        }
+    }
+}
+
+
+
+
+@mixin sticky_navigation {
+    .sticky{
+        .containers{
+            .holder{
+                .navigation{
+                    z-index: 2 !important;
+                    background-color: rgb(107, 0, 45);
+                    width: 100%;
+                    background-color: rgb(255, 255, 255);
+                    box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.7);
+                    margin: 0 auto;
+                    display: block;
+                    max-height: 100% !important;
+                    overflow:visible;
+                        .main-ul{
+                            height: 100%;
+                            width: 80% !important;
+                            margin: 0 auto;
+                            display: flex;
+                            flex-direction: row !important;
+                            position:  relative!important;
+                            align-items: center;
+                            li.main-li{
+                                margin-bottom: 0px;
+                                position: initial !important;
+                                border: none;
+                                text-align: center;
+
+                                label{
+                                    width: 100% !important;
+                                    display: flex;
+                                    align-items: flex-start;
+                                    justify-content: space-between;
+                                    cursor: pointer;
+                                    padding: 10px;
+                                    transition: .3s;
+                                    span{
+                                     color: rgb(0, 0, 0);
+                                     transform: scale(1);
+                                    }
+                                    i{
+                                        color: rgb(0, 0, 0);
+                                        transform: scale(1);
+                                    }
+                                }
+    
+                                label.active{
+                                    background: none;
+                                    span{
+                                        margin-left: 0px !important;
+                                        color: #ba004e !important;
+                                    }
+                                    i{
+                                        transform: rotate(-180deg);
+                                        color: #ba004e !important;
+                                    }
+                                }
+                                
+                                a{
+                                    width: 100% !important;
+                                    display: block;
+                                    color: rgb(0, 0, 0);
+                                    padding: 10px;
+                                    transition: .3s;
+                                    transform: scale(1);
+                                }
+                                    
+                                    
+                                .mega{
+                                    position: absolute;
+                                    width: 100%;
+                                    top: 100%;
+                                    left: 0;
+                                    display: none;
+                                    .contents{
+                                        height: 100%;
+                                        width: 100%;
+                                        padding: 10px;
+                                        background-color: rgb(56, 56, 56);
+                                        .top,.bottom{
+                                            width: 100%;
+                                            display: flex;
+                                            ul{
+                                                width: 100%;
+                                                height: 100%;
+                                                li{
+                                                    display: flex;
+                                                    align-items: center;
+                                                    &:hover > a{
+                                                        margin-left: 5px;
+                                                        color: #860038;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+    
+    
+                                &:hover{  
+                                    background:none;
+                                }
+                                &:hover > label > span, &:hover > a{
+                                    transform: scale(1.1);
+                                    margin-left: 5px;
+                                    color: #860038;
+                                }
+    
+                                &:hover > label > i{
+                                    transform: scale(1.1);
+                                    transform: rotate(-180deg);
+                                    color: #6b002d;
+                                }
+                            }
+                            li.main-li.drop{
+                                position: relative !important;
+                                text-align: left !important;
+
+                                ul.dropdowns{
+                                    background-color: rgb(56, 56, 56);
+                                    display: none;
+                                    position: absolute;
+                                    left: 0;
+                                    min-width: 300px;
+                                    width: 100%;
+                                    li.drop-li{
+                                        a{
+                                            color: #fff;
+                                        }
+                                        label{
+                                            span{
+                                             color: rgb(255, 255, 255);
+                                            }
+                                            i{
+                                                color: rgb(255, 255, 255);
+                                            }
+                                        }
+                                        position: relative !important;
+                                        padding: 0;
+                                        i{
+                                            color: #fff;
+                                        }
+                                        &:hover > label > span , &:hover > a{
+                                            margin-left: 5px;
+                                            color: #ba004e;
+                                        }
+            
+                                        &:hover > label > i{
+                                            transform: rotate(-180deg);
+                                            color: #ba004e;
+                                        }
+
+                                        ul.second{
+                                            background-color: rgb(56, 56, 56);
+                                            width: 100%;
+                                            position: absolute !important;
+                                            left:100% !important;
+                                            top: 0;
+                                            display: none;
+                                        }
+                                    }
+                                }
+                            }
+                            li.main-li.megas{  
+                                .mega{
+                                    overflow-y: hidden;
+                                    .contents{
+                                        display: flex;
+                                        padding: 10px;
+                                        background-color: #383838;
+                                        .top,.bottom{
+                                            ul{
+                                                li{
+                                                    display: flex;
+                                                    align-items: center!important;
+                                                    text-align: left;
+                                                    a{
+                                                        color: #fff;
+                                                    }
+                                                    &:hover > a{
+                                                        margin-left: 5px;
+                                                        color: #860038;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            li.main-li:last-child{
+                                padding: 0px;
+                                .btn{
+                                    padding: .5rem 1.3rem;
+                                    background-color:  #6b002d;
+                                    border-radius: 2rem;
+                                    line-height: 1;
+                                    margin: 0 .2rem;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: space-around;
+                                    span,i{
+                                        color: #fff !important;
+                                    }
+                                    i{
+                                        color: #fff !important;
+                                        font-weight: bold !important;
+                                    }
+                                }
+                                
+                                &:hover > .btn{  
+                                    transform: scale(1) !important;
+                                    span,i{
+                                        color: #fff !important;
+                                    }
+                                }
+                            }
+                        }
+                    
+                }
+            }
+        }
+    }
+    
+}
+
+
+@mixin xl_sticky_navigation {
+
+}

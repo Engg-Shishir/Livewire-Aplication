@@ -1,0 +1,123 @@
+header{
+    .slider{
+        height: 30vh;
+        width: 100%;
+        z-index: 1;
+        position: relative;
+        // Slider Dots Disable
+        .slick-dots{
+            display: none !important; 
+        }
+        // Slider Item
+        .slickItem{
+            height: 100%;
+            width: 100%;
+            img{
+                height: 30vh;
+                width: 100%;
+            }
+            .text{
+                display: block;
+                position: absolute;
+                width: 230px;
+                color: #fff;
+                top: 150px;
+                left: 16px;
+                background-color: black;
+                opacity: 0.5;
+                padding: 3px 10px;
+                h2{
+                    color: #fff;
+                    font-size: 16px;
+                }
+                .reds{
+                    height: 3px;
+                    background-color: rgb(97, 11, 0);
+                    width: 150px;
+                    margin: 5px 0;
+                }
+                p{
+                    display: none;
+                }
+            }
+        }
+        // If Slider Item active then its text
+        .slickItem.slick-active .text{
+            animation: fadeInUp ease 2s;
+            opacity: 0.8 !important;
+        }
+        // Disable default slider controller
+        .slick-prev, .slick-next {
+            display: none !important;
+        }  
+        // Make custom slider controller      
+        .prev,.next {
+            position: absolute;
+            cursor: pointer;
+            top: 45%;
+            z-index: 3;
+            font-size: 15px;
+            height: 20px;
+            width: 20px;
+            background-color: rgb(107, 0, 45);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            i{
+                color: white;
+            }
+        }
+        .prev{
+            left: 0%;
+        }
+        .next{
+            right: 0%;
+        }
+        // Set black overlay in slier
+        &::after{
+            content: "";
+           position: absolute;
+           height: 100%;
+           width: 100%;
+           background-color: black;
+           opacity: 0.3;
+           top: 0;
+           left: 0;
+           bottom: 0;right: 0;
+        }
+    }
+}
+
+@mixin header_slider {
+    header{
+        .slider{
+            height: 70vh;
+            // Slider Item
+            .slickItem{
+                img{
+                    height: 70vh;
+                }
+                .text{
+                    width: 400px;
+                    top: 300px;
+                    left: 100px;
+                    h2{
+                        font-size: 22px;
+                    }
+                    .reds{
+                        width: 250px;
+                    }
+                    p{
+                        display: block;
+                    }
+                }
+            }
+            // Make custom slider controller      
+            .prev,.next {
+                font-size: 20px;
+                height: 40px;
+                width: 40px;
+            }
+        }
+    }
+}
