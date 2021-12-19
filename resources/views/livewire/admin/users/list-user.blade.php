@@ -10,7 +10,7 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="d-flex justify-content-between w-100">
-                                <button class="btn btn-dark">
+                                <button class="btn btn-dark" wire:click.prevent="openAddUserModal">
                                     <i class="fas fa-plus text-danger m2-2"></i> Add User
                                 </button>
                         </div>
@@ -41,4 +41,21 @@
     </section>
 
   <!-- Add New user modal Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="addUserForm" tabindex="-1" wire:ignore.self>
+        <div class="modal-dialog">
+                <div class="modal-content">
+                   <div class="card">
+                       <div class="card-body"></div>
+                   </div>
+                </div>
+        </div>
+      </div>
 </div>
+
+
+<script>
+    window.addEventListener('AddUserModalOpen', event =>{
+        $('#addUserForm').modal('show');
+    });
+</script>
