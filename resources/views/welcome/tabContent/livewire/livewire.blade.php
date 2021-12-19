@@ -23,7 +23,8 @@
                 @include('welcome.tabContent.livewire.part.wire_ignore')
                 @include('welcome.tabContent.livewire.part.get_input_field_value')
                 @include('welcome.tabContent.livewire.part.form_validatio_with_error_message')
-                {{-- @include('welcome.tabContent.livewire.part.form_validatio_with_error_message') --}}
+                @include('welcome.tabContent.livewire.part.password')
+                {{-- @include('welcome.tabContent.livewire.part.bcrypt_password') --}}
             </div>
         </div>
     </div>
