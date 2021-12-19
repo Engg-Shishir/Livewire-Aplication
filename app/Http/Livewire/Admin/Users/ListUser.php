@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire\Admin\Users;
 
+
+// For Make Viladion
+use Illuminate\Support\Facades\Validator;
+
 use Livewire\Component;
 
 class ListUser extends Component
 {
-    public $name;
-    public $state =[];
+    public $ArrayForUserInputFieldValue =[];
 
 
     // Open add user modal
@@ -20,7 +23,13 @@ class ListUser extends Component
     
     public function createUser()
     {
-      dd($this->state);
+      //  Input field vaidation
+      $validatedData = Validator::make($this->ArrayForUserInputFieldValue,[
+        'name' => 'required',
+        'email' => 'required|email|unique:users',
+        'password' => 'required|confirmed'
+      ])->validate();
+
     }
 
 

@@ -52,22 +52,25 @@
                 </div>
                 <div class="modal-body">
                     <form autocomplete="true" wire:submit.prevent="createUser">
-                        {{-- To access name field value you should create a public name variable inside this class file --}}
                         <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" wire:model.defer="name" class="form-control" id="name"  placeholder="Enter your name">
+                            <label for="name">User Name</label>
+                            <input type="text" wire:model.defer="ArrayForUserInputFieldValue.name" class="form-control @error('name') is-invalid  @enderror" id="name" placeholder="Enter your name">
+                            @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
-
-                        {{-- To access email,password value you should create a state array.Thats whay your code may shorter.So this is a good way to to use this approch --}}
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="text" wire:model.defer="state.email" class="form-control" id="email">
+                            <label for="email">Email address</label>
+                            <input type="email" wire:model.defer="ArrayForUserInputFieldValue.email" class="form-control @error('email') is-invalid  @enderror" id="email" placeholder="Enter email">
+                            @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="text" wire:model.defer="state.password" class="form-control" id="password">
+                            <input type="password" wire:model.defer="ArrayForUserInputFieldValue.password" class="form-control @error('password') is-invalid  @enderror" id="password" placeholder="Password">
+                            @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
                         </div>
-                       
+                        <div class="form-group">
+                            <label for="cpassword">Confirm Password</label>
+                            <input type="password" wire:model.defer="ArrayForUserInputFieldValue.password_confirmation" class="form-control" id="cpassword" placeholder="Confirm Password">
+                        </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancle</button>
                             <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i> Save
