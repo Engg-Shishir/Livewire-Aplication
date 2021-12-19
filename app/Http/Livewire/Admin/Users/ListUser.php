@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Livewire\Admin\Users;
+use App\Models\User;
 
 
 // For Make Viladion
@@ -29,6 +30,10 @@ class ListUser extends Component
         'email' => 'required|email|unique:users',
         'password' => 'required|confirmed'
       ])->validate();
+
+      $hash = password_hash($validatedData['password'], PASSWORD_DEFAULT);
+      
+      User::create($validatedData);
 
     }
 
