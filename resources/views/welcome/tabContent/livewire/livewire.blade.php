@@ -22,7 +22,8 @@
                 @include('welcome.tabContent.livewire.part.Wire_model')
                 @include('welcome.tabContent.livewire.part.wire_ignore')
                 @include('welcome.tabContent.livewire.part.get_input_field_value')
-                {{-- @include('welcome.tabContent.livewire.part.get_input_field_value') --}}
+                @include('welcome.tabContent.livewire.part.form_validatio_with_error_message')
+                {{-- @include('welcome.tabContent.livewire.part.form_validatio_with_error_message') --}}
             </div>
         </div>
     </div>
