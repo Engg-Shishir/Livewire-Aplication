@@ -164,7 +164,10 @@ return [
 
         /*
          * Package Service Providers...
+         * Custom Code...
          */
+         App\Providers\FortifyServiceProvider::class,
+         App\Providers\BladeComponentServiceProvider::class,
 
         /*
          * Application Service Providers...
