@@ -19,7 +19,10 @@
                 @include('welcome.tabContent.livewire.part.form_error_message')
                 @include('welcome.tabContent.livewire.part.create_livewire_component')
                 @include('welcome.tabContent.livewire.part.livewire_click_event')
-                {{-- @include('welcome.tabContent.livewire.part.livewire_click_event') --}}
+                @include('welcome.tabContent.livewire.part.Wire_model')
+                @include('welcome.tabContent.livewire.part.wire_ignore')
+                @include('welcome.tabContent.livewire.part.get_input_field_value')
+                {{-- @include('welcome.tabContent.livewire.part.get_input_field_value') --}}
             </div>
         </div>
     </div>
