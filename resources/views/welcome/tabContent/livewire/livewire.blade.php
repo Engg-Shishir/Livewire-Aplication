@@ -18,7 +18,8 @@
                 @include('welcome.tabContent.livewire.part.ServiceProvider')
                 @include('welcome.tabContent.livewire.part.form_error_message')
                 @include('welcome.tabContent.livewire.part.create_livewire_component')
-                {{-- @include('welcome.tabContent.livewire.part.create_livewire_component') --}}
+                @include('welcome.tabContent.livewire.part.livewire_click_event')
+                {{-- @include('welcome.tabContent.livewire.part.livewire_click_event') --}}
             </div>
         </div>
     </div>
