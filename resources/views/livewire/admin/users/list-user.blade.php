@@ -51,57 +51,23 @@
                     </h3>
                 </div>
                 <div class="modal-body">
-                    <form autocomplete="true">
+                    <form autocomplete="true" wire:submit.prevent="createUser">
+                        {{-- To access name field value you should create a public name variable inside this class file --}}
                         <div class="form-group">
-                            <label for="name">User Name</label>
-                            <input type="text" class="form-control" id="name"  placeholder="Enter your name">
+                            <label for="name">Name</label>
+                            <input type="text" wire:model.defer="name" class="form-control" id="name"  placeholder="Enter your name">
                         </div>
-                        {{-- <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" wire:model.defer="state.email" class="form-control @error('email') is-invalid  @enderror" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                            @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
+
+                        {{-- To access email,password value you should create a state array.Thats whay your code may shorter.So this is a good way to to use this approch --}}
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" wire:model.defer="state.email" class="form-control" id="email">
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" wire:model.defer="state.password" class="form-control @error('password') is-invalid  @enderror" id="password" placeholder="Password">
-                            @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            <input type="text" wire:model.defer="state.password" class="form-control" id="password">
                         </div>
-                        <div class="form-group">
-                            <label for="cpassword">Confirm Password</label>
-                            <input type="password" wire:model.defer="state.password_confirmation" class="form-control" id="cpassword" placeholder="Confirm Password">
-                        </div>
-                        <div class="form-group">
-                            <label for="customFile">Custom Photo</label>
-                            @if ($photo)
-                                <img src="{{ $photo->temporaryUrl() }}" class="img d-block my-2 w-100 rounded">
-                            @else
-                                <img src="{{ $state['avatar_url'] ?? '' }}" class="img d-block mb-2 w-100 rounded" >
-                            @endif
-                            
-                            <div class="custom-file">
-                            <div x-data="{ isUploading: false, progress: 5 }"
-                                x-on:livewire-upload-start="isUploading = true"
-                                x-on:livewire-upload-finish="isUploading = false; progress = 5"
-                                x-on:livewire-upload-error="isUploading = false"
-                                x-on:livewire-upload-progress="progress = $event.detail.progress"
-                            >
-                                <input wire:model="photo" type="file" class="custom-file-input" id="customFile">
-                                <div x-show.transition="isUploading" class="progress progress-sm mt-2 rounded">
-                                    <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" x-bind:style="`width: ${progress}%`">
-                                    <span class="sr-only">40% Complete (success)</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                                <label class="custom-file-label" for="customFile">
-                                    @if ($photo)
-                                    {{ $photo->getClientOriginalName() }}
-                                    @else
-                                        Choose file
-                                    @endif
-                                </label>
-                            </div>
-                        </div> --}}
+                       
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancle</button>
                             <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i> Save
