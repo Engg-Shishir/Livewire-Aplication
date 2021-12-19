@@ -35,7 +35,7 @@
             </a>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link {{ request()->is('admin/user') ? 'active': '' }}">
+            <a href="#" class="nav-link {{ request()->is('admin/users') ? 'active': '' }}">
               <i class="nav-icon fas fa-copy"></i>
               <p>
                  Users
@@ -44,7 +44,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link {{ request()->is('admin/user') ? 'active': '' }}">
+                <a href="{{ route('admin.users') }}" class="nav-link {{ request()->is('admin/users') ? 'active': '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User List</p>
                 </a>
