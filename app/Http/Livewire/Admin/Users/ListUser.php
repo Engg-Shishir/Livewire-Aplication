@@ -34,6 +34,8 @@ class ListUser extends Component
       $hash = password_hash($validatedData['password'], PASSWORD_DEFAULT);
       
       User::create($validatedData);
+      
+       session()->flash('message', 'User added successfully 😁'); 
 
     }
 
