@@ -97,7 +97,13 @@
 
 
 <script>
+    // Open user add mdal
     window.addEventListener('AddUserModalOpen', event =>{
         $('#addUserForm').modal('show');
+    });
+
+    // Modal close when form is submitted
+    window.addEventListener('AddUserModalClose', event =>{
+            $('#addUserForm').modal('hide');
     });
 </script>

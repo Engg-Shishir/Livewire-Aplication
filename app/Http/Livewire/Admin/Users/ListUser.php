@@ -35,7 +35,9 @@ class ListUser extends Component
       
       User::create($validatedData);
       
-       session()->flash('message', 'User added successfully 😁'); 
+      // Modal close when form is submitted
+      $this->dispatchBrowserEvent('AddUserModalClose',['message'=>'User added successfully']);
+       
 
     }
 
