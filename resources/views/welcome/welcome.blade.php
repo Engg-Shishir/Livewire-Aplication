@@ -22,48 +22,29 @@
 
 
 @push('styles')
-    <style>
-    .content{
-        width: 80%;
-        margin: 0px auto !important;
-        margin-top: 160px !important;
-        background-color: white;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-        
-    .codeBox{
-        margin-top: -13px;
-        text-align: left;
-        background-color: white;
-        color:black;
-        box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
-    }
-    .tabcontent {
-        display: none;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<style>
+        .content{
+            width: 80%;
+            margin: 0px auto !important;
+            margin-top: 160px !important;
+            background-color: white;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+            
+        .codeBox{
+            margin-top: -13px;
+            text-align: left;
+            background-color: white;
+            color:black;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 3px 8px;
+        }
+        .tabcontent {
+            display: none;
+        }
 
         .fixed{
             position: fixed;
@@ -74,7 +55,7 @@
             width: 80%;
             margin: 0px auto !important;
             padding: 5px;
-            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -118,7 +99,7 @@
         .fixed .tab button.active {
             background-color: #ccc;
         }
-    </style>
+</style>
 @endpush
 
 
