@@ -11,8 +11,6 @@
  <!-- Theme style -->
  <link rel="stylesheet" href="{{ asset('backend/dist/css/adminlte.min.css') }}">
 
- {{-- For Tostar Message css Local Link--}}
- <link href="{{ asset('backend/plugins/toastr/toastr.min.css') }}" rel="stylesheet"/>
 
  {{-- For Tostar Message css Cdn Link--}}
  <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 

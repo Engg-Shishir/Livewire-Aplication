@@ -104,6 +104,9 @@
 
     // Modal close when form is submitted
     window.addEventListener('AddUserModalClose', event =>{
-            $('#addUserForm').modal('hide');
+        $('#addUserForm').modal('hide');
+
+        // Show toast notification alert
+        toastr.success(event.detail.message, 'Success!');
     });
 </script>

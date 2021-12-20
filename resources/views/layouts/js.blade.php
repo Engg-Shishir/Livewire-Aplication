@@ -26,8 +26,8 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('backend/dist/js/demo.js') }}"></script>
 
-{{-- For Tostar Message js local link --}}
-<script src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
+
+
 {{-- For Tostar Message Js cdn link--}}
 <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 
@@ -42,26 +42,9 @@
 <!-- bootstrap color picker -->
 <script src="{{ asset('backend/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 
-{{-- Toaster alert confiuaration --}}
-<script>
-  toastr.options = {
-    "closeButton": true,
-    "debug": false,
-    "newestOnTop": true,
-    "progressBar": true,
-    "positionClass": "toast-top-right",
-    "preventDuplicates": false,
-    "onclick": null,
-    "showDuration": "300",
-    "hideDuration": "1000",
-    "timeOut": "5000",
-    "extendedTimeOut": "1000",
-    "showEasing": "swing",
-    "hideEasing": "linear",
-    "showMethod": "fadeIn",
-    "hideMethod": "fadeOut"
-  }
-</script>
+
+
+
 
 
   <!-- External javascript code from dynamic blade file -->
