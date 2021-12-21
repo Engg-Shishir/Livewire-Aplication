@@ -62,7 +62,7 @@
                                         <a href="" wire:click.prevent="userEdit({{ $user }})">
                                             <i class="fas fa-edit text-warning m2-2"></i>
                                         </a>
-                                        <a href="" wire:click.prevent="userDelete({{ $user->id }})">
+                                        <a href="" wire:click.prevent="showDeleteUserModal({{ $user->id }})">
                                             <i class="fas fa-trash text-danger"></i>
                                         </a>
                                     </td>
@@ -91,44 +91,64 @@
   <!-- Add New user modal Modal -->
     <!-- Modal -->
     <div class="modal fade" id="addUserForm" tabindex="-1" wire:ignore.self>
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header  p-0 bg-gray-dark d-flex justify-content-center">
-                    <h3 class="text-light">
-                            <span>Add New User</span>
-                    </h3>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header  p-0 bg-gray-dark d-flex justify-content-center">
+                        <h3 class="text-light">
+                                <span>Add New User</span>
+                        </h3>
+                    </div>
+                    <div class="modal-body">
+                        <form autocomplete="true" wire:submit.prevent="createUser">
+                            <div class="form-group">
+                                <label for="name">User Name</label>
+                                <input type="text" wire:model.defer="ArrayForUserInputFieldValue.name" class="form-control @error('name') is-invalid  @enderror" id="name" placeholder="Enter your name">
+                                @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email address</label>
+                                <input type="email" wire:model.defer="ArrayForUserInputFieldValue.email" class="form-control @error('email') is-invalid  @enderror" id="email" placeholder="Enter email">
+                                @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" wire:model.defer="ArrayForUserInputFieldValue.password" class="form-control @error('password') is-invalid  @enderror" id="password" placeholder="Password">
+                                @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="cpassword">Confirm Password</label>
+                                <input type="password" wire:model.defer="ArrayForUserInputFieldValue.password_confirmation" class="form-control" id="cpassword" placeholder="Confirm Password">
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancle</button>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i> Save
+                                </button>
+                            </div>
+                        </form>                       
+                    </div>
                 </div>
-                <div class="modal-body">
-                    <form autocomplete="true" wire:submit.prevent="createUser">
-                        <div class="form-group">
-                            <label for="name">User Name</label>
-                            <input type="text" wire:model.defer="ArrayForUserInputFieldValue.name" class="form-control @error('name') is-invalid  @enderror" id="name" placeholder="Enter your name">
-                            @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                </div>
+    </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
+            <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header d-flex justify-content-center">
+                            <h3 class="">
+                               Confirm Delete User !
+                            </h3>
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="email" wire:model.defer="ArrayForUserInputFieldValue.email" class="form-control @error('email') is-invalid  @enderror" id="email" placeholder="Enter email">
-                            @error('email') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" wire:model.defer="ArrayForUserInputFieldValue.password" class="form-control @error('password') is-invalid  @enderror" id="password" placeholder="Password">
-                            @error('password') <div class="invalid-feedback">{{ $message }}</div> @enderror
-                        </div>
-                        <div class="form-group">
-                            <label for="cpassword">Confirm Password</label>
-                            <input type="password" wire:model.defer="ArrayForUserInputFieldValue.password_confirmation" class="form-control" id="cpassword" placeholder="Confirm Password">
+                        <div class="modal-body d-flex justify-content-center p-2">
+                            <img src="{{ asset('image/danger.png') }}" height="150px" width="150px"alt="">
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancle</button>
-                            <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i> Save
-                            </button>
+                            <button  type="button" wire:click.prevent="confirmUserDelete" class="btn btn-danger"><i class="fa fa-trash mr-1"></i>Delete</button>
                         </div>
-                    </form>                       
-                </div>
+                    </div>
             </div>
-        </div>
-      </div>
+          </div>
 </div>
 
 
@@ -145,4 +165,15 @@
         // Show toast notification alert
         toastr.success(event.detail.message, 'Success!');
     });
+
+
+    window.addEventListener('openConfirmDeleteModel', event =>{
+            $('#deleteUserModal').modal('show');
+    });
+
+    window.addEventListener('hideDeleteUserModal', event =>{
+            $('#deleteUserModal').modal('hide');
+            toastr.success(event.detail.message, 'Success!');
+    });
+
 </script>

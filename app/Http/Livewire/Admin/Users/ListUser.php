@@ -14,6 +14,7 @@ class ListUser extends Component
     public $ArrayForUserInputFieldValue =[];
     
     public $user;
+    public $userId;
 
 
     // Open add user modal
@@ -47,6 +48,21 @@ class ListUser extends Component
 
     }
 
+    public function showDeleteUserModal($id)
+    {
+      # code...
+      $this->userId = $id;
+      $this->dispatchBrowserEvent('openConfirmDeleteModel');
+    }
+
+    public function confirmUserDelete()
+    {
+      # code...
+      $user = User::findOrFail($this->userId);
+      $user->delete();
+      // $this->dispatchBrowserEvent('showDeleteUserModal');
+      $this->dispatchBrowserEvent('hideDeleteUserModal',['message'=>'User Deleted successfully']);
+    }
 
     public function render()
     {       
