@@ -16,7 +16,10 @@ class ListUser extends Component
 
     // Open add user modal
     public function openAddUserModal()
-    {
+    {    
+      // Reset form when form modal is open
+       $this->reset();
+      // Create browser event
        $this->dispatchBrowserEvent('AddUserModalOpen');
     }
 
