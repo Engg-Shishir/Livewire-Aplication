@@ -12,6 +12,8 @@ use Livewire\Component;
 class ListUser extends Component
 {
     public $ArrayForUserInputFieldValue =[];
+    
+    public $user;
 
 
     // Open add user modal
@@ -19,6 +21,7 @@ class ListUser extends Component
     {    
       // Reset form when form modal is open
        $this->reset();
+
       // Create browser event
        $this->dispatchBrowserEvent('AddUserModalOpen');
     }
@@ -34,7 +37,7 @@ class ListUser extends Component
         'password' => 'required|confirmed'
       ])->validate();
 
-      $hash = password_hash($validatedData['password'], PASSWORD_DEFAULT);
+      $validatedData['password'] = password_hash($validatedData['password'], PASSWORD_DEFAULT);
       
       User::create($validatedData);
       
@@ -46,7 +49,13 @@ class ListUser extends Component
 
 
     public function render()
-    {
-        return view('livewire.admin.users.list-user');
+    {       
+    
+      $users = User::latest()->paginate(2);
+      // dd($users);
+
+      return view('livewire.admin.users.list-user',[
+        'users' => $users,
+      ]);
     }
 }

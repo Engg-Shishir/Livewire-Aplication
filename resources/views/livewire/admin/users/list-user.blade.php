@@ -39,8 +39,44 @@
                                 <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                               
+                            <tbody wire:loading.class="searchLoading">
+                                @forelse ($users as $key => $user)
+                                    <tr>
+                                    <th scope="row">{{ $key + 1 }}</th>
+                                    {{-- <td>
+                                        @if ($user->avatar)
+                                        <img src="{{ asset('storage/avatars/'.$user->avatar) }}" style="width: 70px; height:70px;">
+                                        @else
+                                        <img src="{{url('noimage.png')}}" style="width: 70px; height:70px;" alt="">
+                                        @endif
+                                    </td> --}}
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
+                                    {{-- <td>
+                                      <select class="form-control" wire:change="changeRole({{ $user }}, $event.target.value)">
+                                        <option value="admin" {{ ($user->role === 'admin') ? 'selected' : '' }}>ADMIN</option>
+                                        <option value="user" {{ ($user->role === 'user') ? 'selected' : '' }}>USER</option>
+                                      </select>
+                                    </td> --}}
+                                    <td>
+                                        <a href="" wire:click.prevent="userEdit({{ $user }})">
+                                            <i class="fas fa-edit text-warning m2-2"></i>
+                                        </a>
+                                        <a href="" wire:click.prevent="userDelete({{ $user->id }})">
+                                            <i class="fas fa-trash text-danger"></i>
+                                        </a>
+                                    </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">
+                                             <img src="{{ asset('image/search.svg') }}" alt="">
+                                             <br><br>
+                                             <p>No Results Found</p>
+                                        </td>         
+                                    </tr>
+
+                                @endforelse
                             </tbody>
                             </table>
                     </div>
