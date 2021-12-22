@@ -10,6 +10,8 @@ class AdminComponent extends Component
 {
     // Livewire default pagination.This stop pagination browser refresh.Without this, painating also work but there page was refresing issue. 
     use withPagination;
+
+    
     // By default , Livewire pagination use Tailwind css Theme.But here we use bootstrap Theme.
     //If you want to use Tailwind CSS Theme bydefault uou dont need this line of code  
     protected $paginationTheme = 'bootstrap';
