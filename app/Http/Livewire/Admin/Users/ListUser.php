@@ -7,20 +7,10 @@ use App\Models\User;
 // For Make Viladion
 use Illuminate\Support\Facades\Validator;
 
-use Livewire\Component;
+use  App\Http\Livewire\Admin\AdminComponent;
 
-// For Livewire Pagination system
-use Livewire\withPagination;
-
-class ListUser extends Component
+class ListUser extends AdminComponent
 {
-    // Livewire default pagination.This stop pagination browser refresh.Without this, painating also work but there page was refresing issue. 
-    use withPagination;
-
-    // By default , Livewire pagination use Tailwind css Theme.But here we use bootstrap Theme.
-    //If you want to use Tailwind CSS Theme bydefault uou dont need this line of code  
-    protected $paginationTheme = 'bootstrap';
-
     public $showEditModal = false;
     public $ArrayForUserInputFieldValue =[];
     public $user;
