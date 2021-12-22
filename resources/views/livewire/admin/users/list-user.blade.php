@@ -86,6 +86,8 @@
                             </table>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
+                       {{-- Laravel default paginating. This also required for livewire pagination --}}
+                       {{ $users->links() }}
                     </div>
                 </div>
             </section>
