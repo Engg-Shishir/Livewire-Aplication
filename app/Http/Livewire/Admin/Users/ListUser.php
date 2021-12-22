@@ -11,8 +11,8 @@ use Livewire\Component;
 
 class ListUser extends Component
 {
+    public $showEditModal = false;
     public $ArrayForUserInputFieldValue =[];
-    
     public $user;
     public $userId;
 
@@ -24,7 +24,7 @@ class ListUser extends Component
        $this->reset();
 
       // Create browser event
-       $this->dispatchBrowserEvent('AddUserModalOpen');
+       $this->dispatchBrowserEvent('Add_Edit_UserModalOpen');
     }
 
 
@@ -43,7 +43,7 @@ class ListUser extends Component
       User::create($validatedData);
       
       // Modal close when form is submitted
-      $this->dispatchBrowserEvent('AddUserModalClose',['message'=>'User added successfully']);
+      $this->dispatchBrowserEvent('Add_Edit_UserModalClose',['message'=>'User added successfully']);
        
 
     }
@@ -63,6 +63,39 @@ class ListUser extends Component
       // $this->dispatchBrowserEvent('showDeleteUserModal');
       $this->dispatchBrowserEvent('hideDeleteUserModal',['message'=>'User Deleted successfully']);
     }
+
+    public function showEditUserModal( User $user)
+    {
+      # code...
+      // Reset Form
+      $this->reset();
+      // To show edit modal, make this true
+      $this->showEditModal = true;
+      // put $user perimeter inside user variable
+      $this->user = $user;
+      // make user variable as a array and put it inside ArrayForUserInputFieldValue array.Thats whay we see all input field with value.Because this array is asociated with input field.
+      $this->ArrayForUserInputFieldValue = $user->toArray();
+      //Open Edit_Add user modal
+      $this->dispatchBrowserEvent('Add_Edit_UserModalOpen');
+      
+    }
+
+    public function Edit_And_UpdateUser(){
+
+      $validatedData = Validator::make($this->ArrayForUserInputFieldValue,[
+        'name' => 'required',
+        'email' => 'required|email|unique:users,email,'.$this->user->id,
+        'password' => 'sometimes|confirmed'
+      ])->validate();
+        
+      if(!empty($validatedData['password'])){
+        $validatedData['password'] = bcrypt( $validatedData['password']);
+      }
+
+        $this->user->update($validatedData);
+        $this->dispatchBrowserEvent('Add_Edit_UserModalClose',['message'=>'User Updated successfully']);
+    }
+
 
     public function render()
     {       

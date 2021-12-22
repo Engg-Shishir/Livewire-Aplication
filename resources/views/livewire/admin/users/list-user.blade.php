@@ -11,7 +11,12 @@
                     <div class="card-header d-flex justify-content-between">
                         <div class="d-flex justify-content-between w-100">
                                 <button class="btn btn-dark" wire:click.prevent="openAddUserModal">
-                                    <i class="fas fa-plus text-danger m2-2"></i> Add User
+                                    <i class="fas fa-plus text-danger m2-2"></i>
+                                        @if ($showEditModal)
+                                        <span>Edit User</span>
+                                        @else  
+                                        <span>Add New User</span>
+                                        @endif
                                 </button>
                         </div>
                     </div>
@@ -59,7 +64,7 @@
                                       </select>
                                     </td> --}}
                                     <td>
-                                        <a href="" wire:click.prevent="userEdit({{ $user }})">
+                                        <a href="" wire:click.prevent="showEditUserModal({{ $user }})">
                                             <i class="fas fa-edit text-warning m2-2"></i>
                                         </a>
                                         <a href="" wire:click.prevent="showDeleteUserModal({{ $user->id }})">
@@ -90,16 +95,20 @@
 
   <!-- Add New user modal Modal -->
     <!-- Modal -->
-    <div class="modal fade" id="addUserForm" tabindex="-1" wire:ignore.self>
+    <div class="modal fade" id="add_Edit_UserForm" tabindex="-1" wire:ignore.self>
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header  p-0 bg-gray-dark d-flex justify-content-center">
                         <h3 class="text-light">
-                                <span>Add New User</span>
+                            @if ($showEditModal)
+                              <span>Edit & Update User</span>
+                              @else  
+                              <span>Add New User</span>
+                            @endif
                         </h3>
                     </div>
                     <div class="modal-body">
-                        <form autocomplete="true" wire:submit.prevent="createUser">
+                        <form autocomplete="true" wire:submit.prevent="{{ $showEditModal ? 'Edit_And_UpdateUser' : 'createUser'}}">
                             <div class="form-group">
                                 <label for="name">User Name</label>
                                 <input type="text" wire:model.defer="ArrayForUserInputFieldValue.name" class="form-control @error('name') is-invalid  @enderror" id="name" placeholder="Enter your name">
@@ -121,7 +130,12 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancle</button>
-                                <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i> Save
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>
+                                    @if ($showEditModal)
+                                       <span>Update</span> 
+                                    @else
+                                       <span>Save</span>
+                                    @endif
                                 </button>
                             </div>
                         </form>                       
@@ -154,13 +168,13 @@
 
 <script>
     // Open user add mdal
-    window.addEventListener('AddUserModalOpen', event =>{
-        $('#addUserForm').modal('show');
+    window.addEventListener('Add_Edit_UserModalOpen', event =>{
+        $('#add_Edit_UserForm').modal('show');
     });
 
     // Modal close when form is submitted
-    window.addEventListener('AddUserModalClose', event =>{
-        $('#addUserForm').modal('hide');
+    window.addEventListener('Add_Edit_UserModalClose', event =>{
+        $('#add_Edit_UserForm').modal('hide');
 
         // Show toast notification alert
         toastr.success(event.detail.message, 'Success!');
