@@ -13,11 +13,11 @@
 <!-- Bootstrap 4 -->
 <script src="{{ asset('backend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
-<!-- daterangepicker -->
+<!-- For daterangepicker -->
 <script src="{{ asset('backend/plugins/moment/moment.min.js') }}"></script>
 <script src="{{ asset('backend/plugins/daterangepicker/daterangepicker.js') }}"></script>
 
-<!-- Tempusdominus Bootstrap 4 -->
+<!-- Tempusdominus Bootstrap 4 ....For Time & date picker needed-->
 <script src="{{ asset('backend/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 
 <!-- AdminLTE App -->

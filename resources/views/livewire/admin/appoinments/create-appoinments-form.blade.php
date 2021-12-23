@@ -25,6 +25,42 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
+                    <form wire:submit.prevent="createAppointment" autocomplete="off">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title float-sm-right text-dark">
+                                    <strong>Add New Appointment</strong>
+                                </h3>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                    </div>
+                                </div>
+                                
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Appointment Date:</label>
+                                            <div wire:ignore class="input-group date" id="appointmentDate" data-target-input="nearest" data-appoinmentdate="@this">
+
+                                                <input type="text" class="form-control datetimepicker-input" data-target="#appointmentDate" id="appointmentDateInput">
+
+                                                <div class="input-group-append" data-target="#appointmentDate" data-toggle="datetimepicker">
+                                                    <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-danger"><i class="fa fa-times mr-1"></i> Cancel</button>
+                                <button id="submit" type="submit" class="btn btn-info"><i class="fa fa-save mr-1"></i> Save</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -38,6 +74,19 @@
 
 @push('scripts')
 
+<script type="text/javascript">
+    // Initialize datetimepicker
+    $('#appointmentDate').datetimepicker({
+        format:'L',
+    });
 
+    // Listen Livewire change event.
+    $('#appointmentDate').on("change.datetimepicker", function(e){
+      let date = $(this).data('appoinmentdate');
+
+    // here eval() meathoad use as proxy of  wire:model.defer="state.date". So we dont need to use any wire model inside input element
+      eval(date).set('state.date', $('#appointmentDateInput').val());
+    });
+</script>  
     
 @endpush
