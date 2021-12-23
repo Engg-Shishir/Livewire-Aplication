@@ -53,6 +53,22 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Appointment Time:</label>
+                                            <div wire:ignore class="input-group date" id="appointmentTime" data-target-input="nearest" data-appoinmenttime="@this">
+
+                                                <input  type="text" class="form-control datetimepicker-input" id="appointmentTimeInput"data-target="#appointmentTimeInput">
+
+                                                <div class="input-group-append" data-target="#appointmentTime" data-toggle="datetimepicker">
+                                                    <div class="input-group-text">
+                                                        <i class="far fa-clock"></i>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-footer">
@@ -86,6 +102,18 @@
 
     // here eval() meathoad use as proxy of  wire:model.defer="state.date". So we dont need to use any wire model inside input element
       eval(date).set('state.date', $('#appointmentDateInput').val());
+    });
+
+
+    // Intialize Time Picker
+    $('#appointmentTime').datetimepicker({
+        format: 'LT'
+    });
+    
+    // Listen Livewire change event using js browser event for time picker.
+    $('#appointmentTime').on("change.datetimepicker", function(e){
+      let time = $(this).data('appoinmenttime');
+      eval(time).set('state.time', $('#appointmentTimeInput').val());
     });
 </script>  
     
