@@ -13,5 +13,6 @@ class Appoinment extends Model
     // Before inserted the getting date should be cast first
     protected $casts = [
     	'date' => 'datetime',
+    	'time' => 'datetime',
     ];
 }
