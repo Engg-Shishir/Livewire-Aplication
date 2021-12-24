@@ -26,3 +26,10 @@ Route::get('admin/dashboard', DashboardController::class)->name('admin.dashboard
 Route::get('admin/users', ListUser::class)->name('admin.users');
 Route::get('admin/appoinments', ListAppoinments::class)->name('admin.appoinments');
 Route::get('admin/appoinments/create', CreateAppoinmentsForm::class)->name('admin.appoinments.create');
+
+Route::get('/clear-cache', function() {
+    $exitCode = Artisan::call('config:cache');
+    $exitCode = Artisan::call('cache:clear');
+    $exitCode = Artisan::call('view:clear');
+    $exitCode = Artisan::call('route:cache');
+});
