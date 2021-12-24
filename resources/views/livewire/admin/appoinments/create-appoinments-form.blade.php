@@ -75,12 +75,12 @@
                                     <div class="col-md-12">
                                         <div wire:ignore class="form-group">
                                             <label for="note">Note:</label>
-                                            <textarea id="summernote" data-note="@this" wire:model.defer="state.note" class="form-control"></textarea>
+                                            <textarea id="summernote" data-note="@this" class="form-control"></textarea>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card-footer">
+                            <div class="card-footer ml-auto">
                                 <button type="button" class="btn btn-danger"><i class="fa fa-times mr-1"></i> Cancel</button>
                                 <button id="submit" type="submit" class="btn btn-info"><i class="fa fa-save mr-1"></i> Save</button>
                             </div>
@@ -125,10 +125,20 @@
       eval(time).set('state.time', $('#appointmentTimeInput').val());
     });
 
-    $(document).ready(function() {
-        $('#summernote').summernote();
+
+    //  Initialize Summernote Html Text Editor. Also set Livewire wire:ignore property using eval()
+    $('#summernote').summernote({
+            callbacks: {
+                onBlur: function() {
+                    let note = $(this).data('note');
+                    eval(note).set('state.note', $('#summernote').val());
+                }
+            }
     });
+
 </script>  
+
+
 
     
 @endpush

@@ -32,6 +32,7 @@
 
 
 
+
 {{-- Summernote Html Edittor --}}
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
@@ -41,8 +42,6 @@
 
 <!-- bootstrap color picker -->
 <script src="{{ asset('backend/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
-
-
 
 
 
