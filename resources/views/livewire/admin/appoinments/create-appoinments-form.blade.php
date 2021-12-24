@@ -70,6 +70,15 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div wire:ignore class="form-group">
+                                            <label for="note">Note:</label>
+                                            <textarea id="summernote" data-note="@this" wire:model.defer="state.note" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <div class="card-footer">
                                 <button type="button" class="btn btn-danger"><i class="fa fa-times mr-1"></i> Cancel</button>
@@ -115,6 +124,11 @@
       let time = $(this).data('appoinmenttime');
       eval(time).set('state.time', $('#appointmentTimeInput').val());
     });
+
+    $(document).ready(function() {
+        $('#summernote').summernote();
+    });
 </script>  
+
     
 @endpush
