@@ -41,44 +41,15 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Start Date:</label>
+                                            <label for="appointmentDate">Appoinment Date:</label>
                                             <div class="input-group">
                                               <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                               </div>
 
-                                              <x-date-picker wire:model.defer="state.start_date" id="appointmentStartDate"/>
+                                              <x-date-picker wire:model.defer="state.start_date" id="appointmentDate"/>
                                             </div>
                                           </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>End Date:</label>
-                                            <div class="input-group">
-                                              <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
-                                              </div>
-
-                                              <x-date-picker wire:model.defer="state.end_date" id="appointmentEndDate"/>
-
-                                            </div>
-                                          </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label>Appointment Time:</label>
-                                            <div wire:ignore class="input-group date" id="appointmentTime" data-target-input="nearest" data-appoinmenttime="@this">
-
-                                                <input  type="text" class="form-control datetimepicker-input" id="appointmentTimeInput"data-target="#appointmentTimeInput">
-
-                                                <div class="input-group-append" data-target="#appointmentTime" data-toggle="datetimepicker">
-                                                    <div class="input-group-text">
-                                                        <i class="far fa-clock"></i>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
 
