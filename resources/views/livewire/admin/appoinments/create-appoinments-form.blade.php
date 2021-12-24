@@ -69,6 +69,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Appointment Time:</label>
+                                            <x-date-picker />
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -98,7 +104,6 @@
 
 
 @push('scripts')
-
 <script type="text/javascript">
     // Initialize datetimepicker
     $('#appointmentDate').datetimepicker({
@@ -137,8 +142,4 @@
     });
 
 </script>  
-
-
-
-    
 @endpush
