@@ -1,3 +1,14 @@
-<div>
-    <!-- I begin to speak only when I am certain what I will say is not better left unsaid. - Cato the Younger -->
-</div>
+
+<input {{ $attributes }} type="text" class="form-control datetimepicker-input" id="{{ $id }}" data-toggle="datetimepicker" data-target="#{{ $id }}"
+onchange="this.dispatchEvent(new InputEvent('input'))"
+/>
+
+
+
+@push('scripts')
+    <script type="text/javascript">
+            $('#{{ $id }}').datetimepicker({
+                format:'LT',
+            });
+    </script>    
+@endpush
