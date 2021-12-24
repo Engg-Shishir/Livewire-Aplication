@@ -42,16 +42,14 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Start Date:</label>
-                                            <div wire:ignore class="input-group date" id="appointmentDate" data-target-input="nearest" data-appoinmentdate="@this">
+                                            <div class="input-group">
+                                              <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                              </div>
 
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#appointmentDate" id="appointmentDateInput">
-
-                                                <div class="input-group-append" data-target="#appointmentDate" data-toggle="datetimepicker">
-                                                    <div class="input-group-text"><i class="fa fa-calendar-alt"></i></div>
-                                                </div>
-
+                                              <x-date-picker wire:model.defer="state.start_date" id="appointmentStartDate"/>
                                             </div>
-                                        </div>
+                                          </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
@@ -60,7 +58,9 @@
                                               <div class="input-group-prepend">
                                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                               </div>
-                                              <x-date-picker wire:model.defer="state.appointment_start_date"/>
+
+                                              <x-date-picker wire:model.defer="state.end_date" id="appointmentEndDate"/>
+
                                             </div>
                                           </div>
                                     </div>
