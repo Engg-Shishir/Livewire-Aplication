@@ -14,7 +14,7 @@ class CreateAppoinmentsForm extends Component
 
     public function createAppointment()
 	{
-        // dd($this->state);
+        dd($this->state);
         $this->state['client_id'] = '1';
         $this->state['status'] = 'ok';
 
