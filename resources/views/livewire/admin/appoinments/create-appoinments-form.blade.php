@@ -72,7 +72,7 @@
                                     <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Appointment Time:</label>
-                                            <x-date-picker />
+                                            <x-date-picker wire:model.defer="state.appointment_start_date"/>
                                         </div>
                                     </div>
                                 </div>
