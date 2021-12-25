@@ -35,6 +35,20 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="client">Client:</label>
+                                            <select class="form-control @error('client_id') is-invalid @enderror" wire:model.defer="state.client_id">
+                                                <option value="">Select Client</option>
+                                                @foreach($clients as $client)
+                                                <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('client_id')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
