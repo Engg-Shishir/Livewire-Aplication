@@ -33,4 +33,16 @@ class Appoinment extends Model
 
         return $badges[$this->status];
     }
+
+    // Date Accessor with Carbon
+    public function getDateAttribute($value)
+    {
+        return Carbon::parse($value)->toFormattedDate();
+    }
+
+    // Time Accessor with Carbon
+    public function getTimeAttribute($value)
+    {
+        return Carbon::parse($value)->toFormattedTime();
+    }
 }
