@@ -34,6 +34,16 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a x-ref="profileLink" target="_blank" href="/clear-cache" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Cache Clear
+              </p>
+            </a>
+          </li>
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link {{ request()->is('admin/users') ? 'active': '' }}">
               <i class="nav-icon fas fa-copy"></i>
@@ -69,7 +79,6 @@
               </p>
             </a>
           </li>
-
           <li class="nav-item">
             <form method="POST" action="">
               @csrf
