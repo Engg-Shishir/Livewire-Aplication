@@ -27,7 +27,8 @@
  {{-- Summernote Html Edittor --}}
  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 
- <!-- Bootstrap Color Picker -->
+ 
+ <!-- Bootstrap Color Pickers -->
  <link rel="stylesheet" href="{{ asset('backend/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
 
 

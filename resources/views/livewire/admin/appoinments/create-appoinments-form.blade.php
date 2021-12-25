@@ -64,6 +64,18 @@
                                             </div>                                            
                                         </div>
                                     </div>
+
+                                    <div class="col-md-4">
+                                        <div class="form-group" wire:ignore.self>
+                                            <label>Color picker:</label>
+                                            <div class="input-group" id="ColorPicker">
+                                                <input name="color" wire:model.defer="state.color" type="text" class="form-control">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text"><i class="fas fa-square"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="row">
@@ -94,7 +106,7 @@
 
 @push('scripts')
 <script type="text/javascript">
-    //  Initialize Summernote Html Text Editor. Also set Livewire wire:ignore property using eval()
+    // Initialize Summernote Html Text Editor. Also set Livewire wire:ignore property using eval()
     $('#summernote').summernote({
             callbacks: {
                 onBlur: function() {
@@ -105,4 +117,21 @@
     });
 
 </script>  
+
+<script>
+    //Initialize color Picker
+    $('#ColorPicker').colorpicker().on('change', function(event) {
+        // Show color Preview in its icon
+        $('#ColorPicker .input-group-text').css('background-color', event.color.toString());
+    });
+</script>
+
+<script>
+    $('form').submit(function() {
+        // Get color and set it inside its wire:model
+        @this.set('state.color', $('[name=color]').val());
+    })
+</script>
+
+
 @endpush

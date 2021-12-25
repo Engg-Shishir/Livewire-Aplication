@@ -40,7 +40,8 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-<!-- bootstrap color picker -->
+
+<!-- bootstrap color pickers -->
 <script src="{{ asset('backend/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 
 
