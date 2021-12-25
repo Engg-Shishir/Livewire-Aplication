@@ -51,7 +51,7 @@
                                             <a href="{{ route('admin.appoinments.edit', $appoinment) }}">
                                                 <i class="fas fa-edit text-warning m2-2"></i>
                                             </a>
-                                            <a href="" wire:click.prevent = "confirmAppoinmentRemoval()">
+                                            <a href="" wire:click.prevent = "confirmAppoinmentRemoval({{ $appoinment->id }})">
                                                 <i class="fas fa-trash text-danger"></i>
                                             </a>
                                         </td>
@@ -94,7 +94,7 @@
           </div>
 </div>
 
-
+@push('scripts')
 <script>
     // Open user add mdal
     window.addEventListener('Add_Edit_UserModalOpen', event =>{
@@ -119,4 +119,33 @@
             toastr.success(event.detail.message, 'Success!');
     });
 
+
+
+
+    
+    window.addEventListener('showDeleteAppoinmentConfirmation', event =>{
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't to delete this Appoinment",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                Livewire.emit('appoinmentDeleteConfirmed')
+                }
+            })
+    });
+
+window.addEventListener('alert', event =>{
+        Swal.fire(
+            event.detail.message ,
+            'success'
+        )
+});
+
 </script>
+    
+@endpush

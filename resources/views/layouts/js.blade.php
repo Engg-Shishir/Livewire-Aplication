@@ -36,6 +36,8 @@
 {{-- Summernote Html Edittor --}}
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
+
+
 {{-- Sweet Alert Js --}}
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -45,7 +47,10 @@
 <script src="{{ asset('backend/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 
 
+<script>
 
+
+</script>
 
   <!-- External javascript code from dynamic blade file -->
   @stack('scripts')
