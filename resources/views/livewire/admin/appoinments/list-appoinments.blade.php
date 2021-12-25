@@ -48,7 +48,7 @@
                                             <span class="badge badge-{{ $appoinment->status_badge }}">{{ $appoinment->status }}</span>
                                         </td>
                                         <td>
-                                            <a href="">
+                                            <a href="{{ route('admin.appoinments.edit', $appoinment) }}">
                                                 <i class="fas fa-edit text-warning m2-2"></i>
                                             </a>
                                             <a href="" wire:click.prevent = "confirmAppoinmentRemoval()">
