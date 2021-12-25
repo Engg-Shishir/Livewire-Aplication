@@ -11,11 +11,11 @@ use Illuminate\Support\Facades\Validator;
 class CreateAppoinmentsForm extends Component
 {
 
-    public $state = [];
+    public $state = ['status' => 'SCHEDULED'];
 
     public function createAppointment()
 	{
-        dd($this->state);
+        // dd($this->state);
         $this->state['client_id'] = '1';
         Validator::make($this->state,[
             'client_id' => 'required',
