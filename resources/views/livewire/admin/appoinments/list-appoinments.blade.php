@@ -32,18 +32,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td></td>
-                                    
-                                    <td>
-                                        <a href="" wire:click.prevent="showEditUserModal()">
-                                            <i class="fas fa-edit text-warning m2-2"></i>
-                                        </a>
-                                        <a href="" wire:click.prevent="showDeleteUserModal()">
-                                            <i class="fas fa-trash text-danger"></i>
-                                        </a>
-                                    </td>
-                                </tr>
+                                @foreach ($appoinments as  $appoinment)
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="icheck-primary d-inline ml-2">
+                                                <input wire:model="selectedRows" type="checkbox" type="checkbox" value="{{ $appoinment->id }}" name="todo2" id="{{ $appoinment->id }}">
+                                                <label for="{{ $appoinment->id }}"></label>
+                                            </div>
+                                            {{ $loop->iteration }}
+                                        </th>
+                                        <td>{{ $appoinment->client->name }}</td>
+                                        <td>{{ $appoinment->date }}</td>
+                                        <td>{{ $appoinment->time }}</td>
+                                        <td>
+                                            <span class="badge badge-success">{{ $appoinment->status }}</span>
+                                        </td>
+                                        <td>
+                                            <a href="">
+                                                <i class="fas fa-edit text-warning m2-2"></i>
+                                            </a>
+                                            <a href="" wire:click.prevent = "confirmAppoinmentRemoval()">
+                                                <i class="fas fa-trash text-danger"></i>
+                                            </a>
+                                        </td>
+                                    </tr>                                        
+                                @endforeach
                             </tbody>
                             </table>
                     </div>

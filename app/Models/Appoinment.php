@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Appoinment extends Model
 {
@@ -15,4 +16,11 @@ class Appoinment extends Model
     	'date' => 'datetime',
     	'time' => 'datetime',
     ];
+
+    // Access Client data
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
+
 }
