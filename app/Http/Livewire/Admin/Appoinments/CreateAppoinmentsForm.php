@@ -16,7 +16,7 @@ class CreateAppoinmentsForm extends Component
     public function createAppointment()
 	{
         // dd($this->state);
-        $this->state['client_id'] = '1';
+        // $this->state['client_id'] = '1';
         Validator::make($this->state,[
             'client_id' => 'required',
             'color'=>'required',
@@ -37,8 +37,10 @@ class CreateAppoinmentsForm extends Component
     
     public function render()
     {
-
-        return view('livewire.admin.appoinments.create-appoinments-form');
+        $clients = Client::all();
+        return view('livewire.admin.appoinments.create-appoinments-form', [
+        	'clients' => $clients,
+        ]);
         
     }
 }
