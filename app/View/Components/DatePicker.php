@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 
 class DatePicker extends Component
 {
-    public $id;
+    public $id,$error;
     /**
      * Create a new component instance.
      *
@@ -16,10 +16,11 @@ class DatePicker extends Component
 
 
     // argument ($id) is a id="appointmentStartDate or appointmentEndDate" 
-    public function __construct($id)
+    public function __construct($id,$error)
     {
         //$this->id means public $id;
         $this->id = $id;
+        $this->error = $error;
     }
 
     /**

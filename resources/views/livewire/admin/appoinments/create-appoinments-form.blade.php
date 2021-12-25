@@ -47,7 +47,13 @@
                                                 <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                                               </div>
 
-                                              <x-date-picker wire:model.defer="state.start_date" id="appointmentDate"/>
+                                              <x-date-picker wire:model.defer="state.date" id="appointmentDate" :error="'date'" />
+                                                
+                                                @error('date')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                           </div>
                                     </div>
@@ -127,6 +133,19 @@
 </script>
 
 <script>
+    
+  // Global toast notification section
+  window.addEventListener('alertSuccess', event =>{
+    toastr.success(event.detail.message, 'Success!');
+  });
+  window.addEventListener('alertWarning', event =>{
+    toastr.warning(event.detail.message, 'Warning!');
+  });
+  window.addEventListener('alertDanger', event =>{
+    toastr.danger(event.detail.message, 'Danger!');
+  });
+
+
     $('form').submit(function() {
         // Get color and set it inside its wire:model
         @this.set('state.color', $('[name=color]').val());

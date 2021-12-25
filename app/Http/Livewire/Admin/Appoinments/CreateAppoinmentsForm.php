@@ -6,6 +6,7 @@ namespace App\Http\Livewire\Admin\Appoinments;
 use Livewire\Component;
 use App\Models\Appoinment;
 use App\Models\Client;
+use Illuminate\Support\Facades\Validator;
 
 class CreateAppoinmentsForm extends Component
 {
@@ -14,11 +15,22 @@ class CreateAppoinmentsForm extends Component
 
     public function createAppointment()
 	{
-        dd($this->state);
+        // dd($this->state);
         $this->state['client_id'] = '1';
         $this->state['status'] = 'ok';
 
-		Appoinment::create($this->state);
+        Validator::make($this->state,[
+            'client_id' => 'required',
+            'color'=>'required',
+            'date' => 'required',
+            'time' => 'required',
+            'note' => 'nullable',],
+        // Custom Message
+        ['date.required' => 'Alert ! Shishir warning you for last time.'])->validate();
+    
+        $result = Appoinment::create($this->state);
+      
+        $this->dispatchBrowserEvent('alertSuccess', ['message' => 'Appointment created successfully!']);
     }
 
     
