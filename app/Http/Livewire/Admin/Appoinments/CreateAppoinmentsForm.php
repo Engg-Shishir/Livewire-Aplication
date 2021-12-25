@@ -19,11 +19,13 @@ class CreateAppoinmentsForm extends Component
         $this->state['client_id'] = '1';
         Validator::make($this->state,[
             'client_id' => 'required',
-            'status' => 'required',
             'color'=>'required',
             'date' => 'required',
             'time' => 'required',
-            'note' => 'nullable',],
+            // That means note can be empty
+            'note' => 'nullable',
+            // This status only recive SCHEDULED,CLOSED
+            'status' => 'required|in:SCHEDULED,CLOSED',],
         // Custom Message
         ['date.required' => 'Alert ! Shishir warning you for last time.'])->validate();
     
