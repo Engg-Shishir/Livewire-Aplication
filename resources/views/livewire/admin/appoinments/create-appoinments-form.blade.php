@@ -36,6 +36,21 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="client">Status:</label>
+                                            <select class="form-control  @error('status') is-invalid @enderror " wire:model.defer="state.status">
+                                                <option value="">Select Status</option>
+                                                <option value="SCHEDULED">Scheduled</option>
+                                                <option value="CLOSED">Closed</option>
+                                            </select>
+                                            @error('status')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
+                                        </div>
+                                    </div>
                                 </div>
                                 
                                 <div class="row">
