@@ -45,7 +45,7 @@
                                         <td>{{ $appoinment->date }}</td>
                                         <td>{{ $appoinment->time }}</td>
                                         <td>
-                                            <span class="badge badge-success">{{ $appoinment->status }}</span>
+                                            <span class="badge badge-{{ $appoinment->status_badge }}">{{ $appoinment->status }}</span>
                                         </td>
                                         <td>
                                             <a href="">

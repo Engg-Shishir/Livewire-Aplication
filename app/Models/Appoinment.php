@@ -23,4 +23,14 @@ class Appoinment extends Model
         return $this->belongsTo(Client::class);
     }
 
+    // Show Appoinment badge Dynamacally
+    public function getStatusBadgeAttribute()
+    {
+        $badges = [
+            'SCHEDULED' => 'primary',
+            'CLOSED' => 'success',
+        ];
+
+        return $badges[$this->status];
+    }
 }
