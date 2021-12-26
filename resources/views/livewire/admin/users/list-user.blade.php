@@ -50,6 +50,7 @@
                                 @forelse ($users as $key => $user)
                                     <tr>
                                     <th scope="row">{{ $key + 1 }}</th>
+                                    <td></td>
                                     {{-- <td>
                                         @if ($user->avatar)
                                         <img src="{{ asset('storage/avatars/'.$user->avatar) }}" style="width: 70px; height:70px;">
@@ -59,6 +60,7 @@
                                     </td> --}}
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
+                                    <td></td>
                                     {{-- <td>
                                       <select class="form-control" wire:change="changeRole({{ $user }}, $event.target.value)">
                                         <option value="admin" {{ ($user->role === 'admin') ? 'selected' : '' }}>ADMIN</option>

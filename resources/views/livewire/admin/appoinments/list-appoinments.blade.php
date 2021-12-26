@@ -16,6 +16,23 @@
                                         <span>Add New Appoinments</span>
                                 </button>
                             </a>
+   
+                            <div class="btn-group">
+                               <button  wire:click="filterAppoinmentsByStatus " type="button" class="btn {{ is_null($status) ? 'btn-secondary' : 'btn-default' }}">
+                                 <span class="mr-1">All</span> 
+                                 <span class="badge badge-pill badge-info">{{ $appoinmentsCount }}</span>
+                               </button>
+                             
+                               <button wire:click="filterAppoinmentsByStatus('scheduled')" type="button" class="btn {{ ($status=='scheduled' ? 'btn-secondary' : 'btn-default') }}">
+                                 <span class="mr-1">Scheduled</span>
+                                 <span class="badge badge-pill badge-primary">{{ $scheduledAppoinmentsCount }}</span>
+                               </button>
+                             
+                               <button wire:click="filterAppoinmentsByStatus('closed')" type="button" class="btn {{ ($status=='closed' ? 'btn-secondary' : 'btn-default') }}">
+                                 <span class="mr-1">Closed</span>
+                                 <span class="badge badge-pill badge-success">{{ $closedAppoinmentsCount }}</span>
+                               </button>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -61,8 +78,8 @@
                             </table>
                     </div>
                     <div class="card-footer d-flex justify-content-end">
-                       {{-- Laravel default paginating. This also required for livewire pagination --}}
-                       {{-- {{ $users->links() }} --}}
+                       {{-- Laravel default paginating. This also required for livewire pagination  --}}
+                        {{ $appoinments->links() }}
                     </div>
                 </div>
             </section>
