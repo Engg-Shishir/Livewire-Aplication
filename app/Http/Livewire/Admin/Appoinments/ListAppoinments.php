@@ -51,7 +51,7 @@ class ListAppoinments extends AdminComponent
                return $query->where('status',$status);
             })
             ->latest()
-            ->paginate();
+            ->paginate(5);
 
             
         $appoinmentsCount = Appoinment::count();
