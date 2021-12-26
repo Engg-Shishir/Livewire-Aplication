@@ -70,28 +70,6 @@
         </div>
     </section>
 
-  <!-- Add New user modal Modal -->
-    <!-- Modal -->
-
-        <!-- Modal -->
-        <div class="modal fade" id="deleteUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" wire:ignore.self>
-            <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header d-flex justify-content-center">
-                            <h3 class="">
-                               Confirm Delete User !
-                            </h3>
-                        </div>
-                        <div class="modal-body d-flex justify-content-center p-2">
-                            <img src="{{ asset('image/danger.png') }}" height="150px" width="150px"alt="">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancle</button>
-                            <button  type="button" wire:click.prevent="confirmUserDelete" class="btn btn-danger"><i class="fa fa-trash mr-1"></i>Delete</button>
-                        </div>
-                    </div>
-            </div>
-          </div>
 </div>
 
 @push('scripts')
@@ -110,14 +88,7 @@
     });
 
 
-    window.addEventListener('openConfirmDeleteModel', event =>{
-            $('#deleteUserModal').modal('show');
-    });
-
-    window.addEventListener('hideDeleteUserModal', event =>{
-            $('#deleteUserModal').modal('hide');
-            toastr.success(event.detail.message, 'Success!');
-    });
+ 
 
 
 
@@ -139,12 +110,12 @@
             })
     });
 
-window.addEventListener('alert', event =>{
-        Swal.fire(
-            event.detail.message ,
-            'success'
-        )
-});
+    window.addEventListener('alert', event =>{
+            Swal.fire(
+                event.detail.message ,
+                'success'
+            )
+    });
 
 </script>
     

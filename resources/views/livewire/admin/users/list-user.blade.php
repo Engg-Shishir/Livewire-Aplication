@@ -18,6 +18,8 @@
                                         <span>Add New User</span>
                                         @endif
                                 </button>
+
+                                <x-search-input wire:model.delay="searchUser"/>
                         </div>
                     </div>
                     <div class="card-body">
@@ -74,8 +76,8 @@
                                     </tr>
                                     @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">
-                                             <img src="{{ asset('image/search.svg') }}" alt="">
+                                        <td colspan="6" class="text-center">
+                                             <img src="{{ asset('image/search1.gif') }}" alt="">
                                              <br><br>
                                              <p>No Results Found</p>
                                         </td>         
