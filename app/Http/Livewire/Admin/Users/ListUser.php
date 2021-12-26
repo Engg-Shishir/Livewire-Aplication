@@ -2,17 +2,15 @@
 
 namespace App\Http\Livewire\Admin\Users;
 use App\Models\User;
-use Livewire\WithFileUploads;
-
 // For Make Viladion
 use Illuminate\Support\Facades\Validator;
-
+use Image;
+use File;
 use  App\Http\Livewire\Admin\AdminComponent;
-
+use Livewire\WithFileUploads;
 class ListUser extends AdminComponent
 {
     use  WithFileUploads;
-
     public $showEditModal = false;
     public $ArrayForUserInputFieldValue =[];
     public $user;
@@ -39,15 +37,34 @@ class ListUser extends AdminComponent
       $validatedData = Validator::make($this->ArrayForUserInputFieldValue,[
         'name' => 'required',
         'email' => 'required|email|unique:users',
-        'password' => 'required|confirmed'
+        'password' => 'required|confirmed',
       ])->validate();
 
       $validatedData['password'] = password_hash($validatedData['password'], PASSWORD_DEFAULT);
 
-      if ($this->photo) {
-         $validatedData['avatar'] = $this->photo->store('/', 'avatars');
-      }
+      #<---=== create custom file mame ===----->
+      $imageName = $this->ArrayForUserInputFieldValue['name'].'.'.$this->photo->extension();
+
+      #<---=== check file already exist or not ===----->
+      $old_image_path = public_path("storage/avatars/$imageName");
       
+      #<---=== If exist, delete this file ===----->
+      if(File::exists($old_image_path)) {
+          File::delete($old_image_path);
+      }
+      #<---=== Move new file inside your specific folder ===----->
+      
+
+      // this file store storage/public/avatars/
+      $path = $this->photo->storeAs(
+        'public/avatars', $imageName
+      );
+
+
+
+      $validatedData['avatar'] = $imageName;
+      // dd($imageName);
+
       User::create($validatedData);
       
       // Modal close when form is submitted

@@ -42,13 +42,13 @@ return [
             'visibility' => 'public',
         ],
 
-        // For profile image store
-        'avatars' => [
-            'driver' => 'local',
-            'root' => storage_path('app/public/avatars'),
-            'url' => env('APP_URL').'/storage/avatars',
-            'visibility' => 'public',
-        ],
+        // // For profile image showing
+        // 'avatars' => [
+        //     'driver' => 'local',
+        //     'root' => storage_path('app/public/avatars'),
+        //     'url' => env('APP_URL').'/storage/avatars',
+        //     'visibility' => 'public',
+        // ],
 
         's3' => [
             'driver' => 's3',
@@ -74,6 +74,13 @@ return [
     |
     */
 
+    // Public_path means = public folder
+    // storage_path means = storage folder
+
+    // that means we pass storage/app/public as a link name of public/storage &
+    //  pass storage/app/public/avatars as a link name of public/storage/avatars 
+
+    // when php artisan storage:link is run , below link is created
     'links' => [
         public_path('storage') => storage_path('app/public'),
         public_path('storage/avatars') => storage_path('app/public/avatars'),

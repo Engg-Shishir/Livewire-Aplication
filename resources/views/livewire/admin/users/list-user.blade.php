@@ -51,13 +51,13 @@
                                     <tr>
                                     <th scope="row">{{ $key + 1 }}</th>
                                     <td></td>
-                                    {{-- <td>
+                                    <td>
                                         @if ($user->avatar)
                                         <img src="{{ asset('storage/avatars/'.$user->avatar) }}" style="width: 70px; height:70px;">
                                         @else
-                                        <img src="{{url('noimage.png')}}" style="width: 70px; height:70px;" alt="">
+                                        <img src="{{url('image/noimage.png')}}" style="width: 70px; height:70px;" alt="">
                                         @endif
-                                    </td> --}}
+                                    </td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td></td>
