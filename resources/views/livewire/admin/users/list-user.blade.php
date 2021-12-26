@@ -134,6 +134,19 @@
                                 <label for="cpassword">Confirm Password</label>
                                 <input type="password" wire:model.defer="ArrayForUserInputFieldValue.password_confirmation" class="form-control" id="cpassword" placeholder="Confirm Password">
                             </div>
+                            <div class="form-group">
+                                <label for="cpassword">Profile Photo</label>
+                                <div class="custom-file">
+                                  <input wire:model="photo" type="file" class="custom-file-input" id="customFile">
+                                  <label class="custom-file-label" for="customFile">
+                                    @if ($photo)
+                                      {{ $photo->getClientOriginalName() }}
+                                    @else
+                                       Choose file
+                                    @endif
+                                </label>
+                                </div>
+                            </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancle</button>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>

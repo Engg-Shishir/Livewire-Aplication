@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Users;
 use App\Models\User;
-
+use Livewire\WithFileUploads;
 
 // For Make Viladion
 use Illuminate\Support\Facades\Validator;
@@ -11,11 +11,13 @@ use  App\Http\Livewire\Admin\AdminComponent;
 
 class ListUser extends AdminComponent
 {
+    use  WithFileUploads;
+
     public $showEditModal = false;
     public $ArrayForUserInputFieldValue =[];
     public $user;
     public $userId;
-
+    public $photo;
     public $searchUser = null;
 
 
@@ -41,6 +43,10 @@ class ListUser extends AdminComponent
       ])->validate();
 
       $validatedData['password'] = password_hash($validatedData['password'], PASSWORD_DEFAULT);
+
+      if ($this->photo) {
+         $validatedData['avatar'] = $this->photo->store('/', 'avatars');
+      }
       
       User::create($validatedData);
       
