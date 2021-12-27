@@ -52,11 +52,7 @@
                                     <th scope="row">{{ $key + 1 }}</th>
                                     <td></td>
                                     <td>
-                                        @if ($user->avatar)
-                                        <img src="{{ asset('storage/avatars/'.$user->avatar) }}" style="width: 70px; height:70px;">
-                                        @else
-                                        <img src="{{url('image/noimage.png')}}" style="width: 70px; height:70px;" alt="">
-                                        @endif
+                                        <img src="{{ $user['avatar_url'] }}" style="width: 70px; height:70px;">
                                     </td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
@@ -136,6 +132,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="cpassword">Profile Photo</label>
+                                @if ($photo)
+                                <img src="{{ $photo->temporaryUrl() }}" class="img d-block mt-2 w-100 h-50">
+                                @else
+                                <img src="{{ $ArrayForUserInputFieldValue['avatar_url'] ?? '' }}" class="img d-block mt-2 w-100 h-50">
+                                @endif
+                                {{-- http://localhost/storage/avatars/Shishir.jpg --}}
+                                {{-- http://127.0.0.1:8000/storage/avatars/Shishir.jpg --}}
                                 <div class="custom-file">
                                   <input wire:model="photo" type="file" class="custom-file-input" id="customFile">
                                   <label class="custom-file-label" for="customFile">

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -34,6 +35,9 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $appends = [
+        'avatar_url',
+    ];
     /**
      * The attributes that should be cast.
      *
@@ -43,4 +47,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    // Image preview for update user
+    public function getAvatarUrlAttribute()
+    {
+        if ($this->avatar && Storage::disk('avatars')->exists($this->avatar)) {
+            return Storage::disk('avatars')->url($this->avatar);
+        }
+
+        return asset('image/noimage.png');
+    }
 }
