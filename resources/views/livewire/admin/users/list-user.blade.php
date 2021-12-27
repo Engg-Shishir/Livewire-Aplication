@@ -132,11 +132,21 @@
                             </div>
                             <div class="form-group">
                                 <label for="cpassword">Profile Photo</label>
+                                
                                 @if ($photo)
-                                <img src="{{ $photo->temporaryUrl() }}" class="img d-block mt-2 w-100 h-50">
+                                    <img src="{{ $photo->temporaryUrl() }}" class="img d-block mt-2 w-100 h-50">
                                 @else
-                                <img src="{{ $ArrayForUserInputFieldValue['avatar_url'] ?? '' }}" class="img d-block mt-2 w-100 h-50">
+                                    @if ($showEditModal == false)
+                                    {{--  --}}
+                                    @else
+                                        @if ($ArrayForUserInputFieldValue)
+                                            <img src="{{ $ArrayForUserInputFieldValue['avatar_url'] }}" class="img d-block mt-2 w-100" style="height:300px;">
+                                        @endif
+                                    @endif
                                 @endif
+
+
+                                
                                 {{-- http://localhost/storage/avatars/Shishir.jpg --}}
                                 {{-- http://127.0.0.1:8000/storage/avatars/Shishir.jpg --}}
                                 <div class="custom-file">
