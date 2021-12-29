@@ -22,6 +22,9 @@
 <!-- AdminLTE App -->
 <script src="{{ asset('backend/dist/js/adminlte.js') }}"></script>
 
+{{-- Alopine Js For progress bar --}}
+<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('backend/dist/js/demo.js') }}"></script>
 
@@ -46,11 +49,52 @@
 <!-- bootstrap color pickers -->
 <script src="{{ asset('backend/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 
+  <!-- Load FilePond library -->
+  <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
 
+  <!-- Load FilePond library -->
+  <script src="{{ asset('backend/filepond.js') }}"></script>
+
+  <!-- Turn all file input elements into ponds -->
+ 
+
+
+
+
+{{-- Toaster alert confiuaration --}}
 <script>
-
-
+  toastr.options = {
+    "closeButton": true,
+    "debug": false,
+    "newestOnTop": true,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "5000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+  }
 </script>
 
-  <!-- External javascript code from dynamic blade file -->
-  @stack('scripts')
+
+<script>
+  FilePond.parse(document.body);
+
+  FilePond.setOptions({
+    server: {
+        url: '/upload',
+        headers: {
+          'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        }
+    }
+  });
+</script>
+
+
+@stack('scripts')

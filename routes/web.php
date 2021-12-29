@@ -6,6 +6,7 @@ use App\Http\Livewire\Admin\Users\ListUser;
 use App\Http\Livewire\Admin\Appoinments\ListAppoinments;
 use App\Http\Livewire\Admin\Appoinments\CreateAppoinmentsForm;
 use App\Http\Livewire\Admin\Appoinments\UpdateAppoinmentsForm;
+use App\Http\Controllers\UploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,11 @@ Route::get('admin/users', ListUser::class)->name('admin.users');
 Route::get('admin/appoinments', ListAppoinments::class)->name('admin.appoinments');
 Route::get('admin/appoinments/create', CreateAppoinmentsForm::class)->name('admin.appoinments.create');
 Route::get('admin/appoinment/{PassAppoinment}/edit', UpdateAppoinmentsForm::class)->name('admin.appoinments.edit');
+
+
+
+Route::post('upload',[UploadController::class, 'store']);
+
 
 Route::get('/clear-cache', function() {
     $exitCode = Artisan::call('config:cache');

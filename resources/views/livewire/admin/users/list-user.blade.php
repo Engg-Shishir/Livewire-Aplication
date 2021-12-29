@@ -110,7 +110,16 @@
                         </h3>
                     </div>
                     <div class="modal-body">
+
                         <form autocomplete="true" wire:submit.prevent="{{ $showEditModal ? 'Edit_And_UpdateUser' : 'createUser'}}">
+
+                            {{-- <input type="text" value="{{ $randomForm }}"> --}}
+
+                            <div class="form-group">
+                                <input type="hidden" wire:model="ArrayForUserInputFieldValue.formId"class="form-control" id="hidden" placeholder="Enter your name">
+                            </div>
+
+                            
                             <div class="form-group">
                                 <label for="name">User Name</label>
                                 <input type="text" wire:model.defer="ArrayForUserInputFieldValue.name" class="form-control @error('name') is-invalid  @enderror" id="name" placeholder="Enter your name">
@@ -145,23 +154,27 @@
                                     @endif
                                 @endif
 
+                                <div>
+                                    
+                                <input  type="file" id="avatar" name="avatar">
+                                </div>
 
-                                
-                                {{-- http://localhost/storage/avatars/Shishir.jpg --}}
-                                {{-- http://127.0.0.1:8000/storage/avatars/Shishir.jpg --}}
-                                <div class="custom-file">
-                                  <input wire:model="photo" type="file" class="custom-file-input" id="customFile">
-                                  <label class="custom-file-label" for="customFile">
+                                {{-- <div class="custom-file">
+                                  <input wire:model="photo" type="file" class="" id="customFile">
+
+                                <label class="custom-file-label" for="customFile">
                                     @if ($photo)
                                       {{ $photo->getClientOriginalName() }}
                                     @else
                                        Choose file
                                     @endif
                                 </label>
-                                </div>
+
+
+                                </div> --}}
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancle</button>
+                                <button wire:click="cancle" id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancle</button>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>
                                     @if ($showEditModal)
                                        <span>Update</span> 
@@ -198,6 +211,7 @@
 </div>
 
 
+@push('scripts')
 <script>
     // Open user add mdal
     window.addEventListener('Add_Edit_UserModalOpen', event =>{
@@ -221,5 +235,28 @@
             $('#deleteUserModal').modal('hide');
             toastr.success(event.detail.message, 'Success!');
     });
+    
 
+</script> 
+
+<script>
+    // Get a reference to the file input element
+    const inputElement = document.querySelector('input[id="avatar"]');
+  
+    // Create a FilePond instance
+    const pond = FilePond.create(inputElement);
 </script>
+
+<script>
+    $("#cancel").click(function(){
+        // var filePond = document.getElementById("avatar");
+        // if (filePond != null) {
+        //     filePond.removeFiles();
+        // }
+        // alert(filePond);
+        pond.removeFiles();
+    });
+</script>
+
+@endpush
+ 

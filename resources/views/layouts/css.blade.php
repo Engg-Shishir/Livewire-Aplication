@@ -22,7 +22,11 @@
  <!-- iCheck -->
  <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 
- 
+<!-- Filepond stylesheet -->
+<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+
+<!-- Load FilePond library -->
+<script src="{{ asset('backend/filepond.css') }}"></script>
  
  {{-- Summernote Html Edittor --}}
  <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -33,5 +37,4 @@
 
 
 
- <!-- External CSS code from dynamic blade file -->
  @stack('styles')
