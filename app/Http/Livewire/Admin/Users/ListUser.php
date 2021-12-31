@@ -73,20 +73,20 @@ class ListUser extends AdminComponent
       }
 
       #<---=== create custom file mame ===----->
-      // $imageName = $this->ArrayForUserInputFieldValue['name'].'.'.$this->photo->extension();
+      $imageName = $this->ArrayForUserInputFieldValue['name'].'.'.$this->photo->extension();
       #<---=== check file already exist or not ===----->
-      // $old_image_path = public_path("storage/avatars/$imageName");
+      $old_image_path = public_path("storage/avatars/$imageName");
       
       #<---=== If exist, delete this file ===----->
-      // if(File::exists($old_image_path)) {
-      //     File::delete($old_image_path);
-      // }
+      if(File::exists($old_image_path)) {
+          File::delete($old_image_path);
+      }
       #<---=== Move new file inside your specific folder ===----->
       // this file store storage/public/avatars/
-      // $path = $this->photo->storeAs(
-      //   'public/avatars', $imageName
-      // );
-      // $validatedData['avatar'] = $imageName;
+      $path = $this->photo->storeAs(
+        'public/avatars', $imageName
+      );
+      $validatedData['avatar'] = $imageName;
       
 
       User::create($validatedData);

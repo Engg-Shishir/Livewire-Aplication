@@ -114,8 +114,18 @@
                         <form autocomplete="true" wire:submit.prevent="{{ $showEditModal ? 'Edit_And_UpdateUser' : 'createUser'}}">
 
                             {{-- <input type="text" value="{{ $randomForm }}"> --}}
-                            
-                            <input  type="file" id="avatar" name="avatar">
+                        {{-- <div
+                            x-data="{ isUploading: false, progress: 0 }"
+                            x-on:livewire-upload-start="isUploading = true"
+                            x-on:livewire-upload-finish="isUploading = false"
+                            x-on:livewire-upload-error="isUploading = false"
+                            x-on:livewire-upload-progress="progress = $event.detail.progress,progress: 0 "
+                        >
+                            <input type="file" wire:model="photo">
+                            <div x-show="isUploading" class="w-100">
+                                <progress class="w-100" max="100" x-bind:value="progress"></progress>
+                            </div>
+                        </div> --}}
 
                             <div class="form-group">
                                 <input type="hidden" wire:model="ArrayForUserInputFieldValue.formId"class="form-control" id="hidden" placeholder="Enter your name">
@@ -144,8 +154,8 @@
                             
 
                             
-                            {{-- <div class="form-group"> --}}
-                                {{-- <label for="cpassword">Profile Photo</label>
+                            <div class="form-group">
+                                <label for="cpassword">Profile Photo</label>
                                 
                                 @if ($photo)
                                     <img src="{{ $photo->temporaryUrl() }}" class="img d-block mt-2 w-100 h-50">
@@ -156,22 +166,31 @@
                                             <img src="{{ $ArrayForUserInputFieldValue['avatar_url'] }}" class="img d-block mt-2 w-100" style="height:300px;">
                                         @endif
                                     @endif
-                                @endif --}}
+                                @endif
 
-                                {{-- <div class="custom-file">
-                                  <input wire:model="photo" type="file" class="" id="customFile">
+                                <div
+                                    x-data="{ isUploading: false, progress: 0 }"
+                                    x-on:livewire-upload-start="isUploading = true"
+                                    x-on:livewire-upload-finish="isUploading = false"
+                                    x-on:livewire-upload-error="isUploading = false"
+                                    x-on:livewire-upload-progress="progress = $event.detail.progress,progress: 0 "
+                                >                           
+                                    <div class="custom-file">
+                                        <input wire:model="photo" type="file" class="" id="customFile" />
 
-                                <label class="custom-file-label" for="customFile">
-                                    @if ($photo)
-                                      {{ $photo->getClientOriginalName() }}
-                                    @else
-                                       Choose file
-                                    @endif
-                                </label>
-
-
-                                </div> --}}
-                            {{-- </div> --}}
+                                        <label class="custom-file-label" for="customFile">
+                                            @if ($photo)
+                                            {{ $photo->getClientOriginalName() }}
+                                            @else
+                                            Choose file
+                                            @endif
+                                        </label>
+                                    </div>
+                                    <div x-show="isUploading" class="w-100">
+                                        <progress class="w-100" max="100" x-bind:value="progress"></progress>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="modal-footer">
                                 <button wire:click="cancle" id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancle</button>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>
