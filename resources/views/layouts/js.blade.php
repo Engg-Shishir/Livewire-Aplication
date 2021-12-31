@@ -50,10 +50,8 @@
 <script src="{{ asset('backend/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 
   <!-- Load FilePond library -->
-  <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+  {{-- <script src="https://unpkg.com/filepond/dist/filepond.js"></script> --}}
 
-  <!-- Load FilePond library -->
-  <script src="{{ asset('backend/filepond.js') }}"></script>
 
   <!-- Turn all file input elements into ponds -->
  
@@ -82,7 +80,7 @@
   }
 </script>
 
-
+{{-- 
 <script>
   FilePond.parse(document.body);
 
@@ -94,7 +92,7 @@
         }
     }
   });
-</script>
+</script> --}}
 
 
 @stack('scripts')

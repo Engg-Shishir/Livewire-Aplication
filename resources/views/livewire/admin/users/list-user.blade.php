@@ -97,7 +97,7 @@
 
   <!-- Add New user modal Modal -->
     <!-- Modal -->
-    <div class="modal fade" id="add_Edit_UserForm" tabindex="-1" wire:ignore.self>
+    <div class="modal fade" id="add_Edit_UserForm" wire:ignore.self>
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header  p-0 bg-gray-dark d-flex justify-content-center">
@@ -114,6 +114,8 @@
                         <form autocomplete="true" wire:submit.prevent="{{ $showEditModal ? 'Edit_And_UpdateUser' : 'createUser'}}">
 
                             {{-- <input type="text" value="{{ $randomForm }}"> --}}
+                            
+                            <input  type="file" id="avatar" name="avatar">
 
                             <div class="form-group">
                                 <input type="hidden" wire:model="ArrayForUserInputFieldValue.formId"class="form-control" id="hidden" placeholder="Enter your name">
@@ -139,25 +141,22 @@
                                 <label for="cpassword">Confirm Password</label>
                                 <input type="password" wire:model.defer="ArrayForUserInputFieldValue.password_confirmation" class="form-control" id="cpassword" placeholder="Confirm Password">
                             </div>
-                            <div class="form-group">
-                                <label for="cpassword">Profile Photo</label>
+                            
+
+                            
+                            {{-- <div class="form-group"> --}}
+                                {{-- <label for="cpassword">Profile Photo</label>
                                 
                                 @if ($photo)
                                     <img src="{{ $photo->temporaryUrl() }}" class="img d-block mt-2 w-100 h-50">
                                 @else
                                     @if ($showEditModal == false)
-                                    {{--  --}}
                                     @else
                                         @if ($ArrayForUserInputFieldValue)
                                             <img src="{{ $ArrayForUserInputFieldValue['avatar_url'] }}" class="img d-block mt-2 w-100" style="height:300px;">
                                         @endif
                                     @endif
-                                @endif
-
-                                <div>
-                                    
-                                <input  type="file" id="avatar" name="avatar">
-                                </div>
+                                @endif --}}
 
                                 {{-- <div class="custom-file">
                                   <input wire:model="photo" type="file" class="" id="customFile">
@@ -172,7 +171,7 @@
 
 
                                 </div> --}}
-                            </div>
+                            {{-- </div> --}}
                             <div class="modal-footer">
                                 <button wire:click="cancle" id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancle</button>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>
@@ -210,8 +209,34 @@
           </div>
 </div>
 
+@push('styles')
+    @once
+        <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
+    @endonce
+@endpush
 
 @push('scripts')
+    @once
+        <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+    @endonce
+@endpush
+
+@push('scripts')
+
+<script>
+    FilePond.parse(document.body);
+  
+    FilePond.setOptions({
+      server: {
+          url: '/upload',
+          headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+          }
+      }
+    });
+</script> 
+
+
 <script>
     // Open user add mdal
     window.addEventListener('Add_Edit_UserModalOpen', event =>{
@@ -224,6 +249,10 @@
 
         // Show toast notification alert
         toastr.success(event.detail.message, 'Success!');
+
+        setTimeout(() => {
+            window.location.reload(true);
+        }, 2000);
     });
 
 
@@ -249,12 +278,7 @@
 
 <script>
     $("#cancel").click(function(){
-        // var filePond = document.getElementById("avatar");
-        // if (filePond != null) {
-        //     filePond.removeFiles();
-        // }
-        // alert(filePond);
-        pond.removeFiles();
+            window.location.reload(true);
     });
 </script>
 

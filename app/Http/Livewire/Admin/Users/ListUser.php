@@ -90,6 +90,7 @@ class ListUser extends AdminComponent
       
 
       User::create($validatedData);
+      $this->reset();
       
       // Modal close when form is submitted
       $this->dispatchBrowserEvent('Add_Edit_UserModalClose',['message'=>'User added successfully']);
