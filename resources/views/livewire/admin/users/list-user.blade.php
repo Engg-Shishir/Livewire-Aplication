@@ -1,4 +1,7 @@
 <div>
+    {{-- Loading Indicator --}}
+    <x-loading-indicator />
+
     {{-- If your happiness depends on money, you will never be happy with yourself. --}}
     <section class="content">
         <div class="container-fluid">
@@ -68,7 +71,7 @@
                                             <i class="fas fa-edit text-warning m2-2"></i>
                                         </a>
                                         <a href="" wire:click.prevent="showDeleteUserModal({{ $user->id }})">
-                                            <i class="fas fa-trash text-danger"></i>
+                                            <i class="fas fa-trash text-danger"></i> 
                                         </a>
                                     </td>
                                     </tr>
@@ -151,7 +154,7 @@
                                     @else
                                     {{-- When Edit modal open, show store image preview first --}}
                                         @if ($ArrayForUserInputFieldValue)
-                                            <img src="{{ $ArrayForUserInputFieldValue['avatar_url'] }}" class="img d-block mt-2 w-100" style="height:250px;">
+                                            <img src="{{ $ArrayForUserInputFieldValue['avatar_url'] }}" class="img d-block my-2 w-100" style="height:250px;">
                                         @endif
                                     @endif
                                 @endif
