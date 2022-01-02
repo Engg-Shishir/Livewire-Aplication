@@ -113,20 +113,6 @@
 
                         <form autocomplete="true" wire:submit.prevent="{{ $showEditModal ? 'Edit_And_UpdateUser' : 'createUser'}}">
 
-                            {{-- <input type="text" value="{{ $randomForm }}"> --}}
-                        {{-- <div
-                            x-data="{ isUploading: false, progress: 0 }"
-                            x-on:livewire-upload-start="isUploading = true"
-                            x-on:livewire-upload-finish="isUploading = false"
-                            x-on:livewire-upload-error="isUploading = false"
-                            x-on:livewire-upload-progress="progress = $event.detail.progress,progress: 0 "
-                        >
-                            <input type="file" wire:model="photo">
-                            <div x-show="isUploading" class="w-100">
-                                <progress class="w-100" max="100" x-bind:value="progress"></progress>
-                            </div>
-                        </div> --}}
-
                             <div class="form-group">
                                 <input type="hidden" wire:model="ArrayForUserInputFieldValue.formId"class="form-control" id="hidden" placeholder="Enter your name">
                             </div>
@@ -153,17 +139,19 @@
                             </div>
                             
 
-                            
                             <div class="form-group">
+
                                 <label for="cpassword">Profile Photo</label>
                                 
                                 @if ($photo)
-                                    <img src="{{ $photo->temporaryUrl() }}" class="img d-block mt-2 w-100 h-50">
+                                 <img src="{{ $photo->temporaryUrl() }}" class="img d-block my-2 w-100" style="height: 250px;">
                                 @else
                                     @if ($showEditModal == false)
+                                    {{-- when add modal open nothing is showing first --}}
                                     @else
+                                    {{-- When Edit modal open, show store image preview first --}}
                                         @if ($ArrayForUserInputFieldValue)
-                                            <img src="{{ $ArrayForUserInputFieldValue['avatar_url'] }}" class="img d-block mt-2 w-100" style="height:300px;">
+                                            <img src="{{ $ArrayForUserInputFieldValue['avatar_url'] }}" class="img d-block mt-2 w-100" style="height:250px;">
                                         @endif
                                     @endif
                                 @endif
@@ -173,24 +161,31 @@
                                     x-on:livewire-upload-start="isUploading = true"
                                     x-on:livewire-upload-finish="isUploading = false"
                                     x-on:livewire-upload-error="isUploading = false"
-                                    x-on:livewire-upload-progress="progress = $event.detail.progress,progress: 0 "
-                                >                           
-                                    <div class="custom-file">
-                                        <input wire:model="photo" type="file" class="" id="customFile" />
+                                    x-on:livewire-upload-progress="progress = $event.detail.progress,progress: 0 ">
 
+                                    {{-- Input field style using admin lte template --}}
+                                    <div class="custom-file">
+                                        <input wire:model.defer="photo" type="file"  id="customFile" />
+                            
                                         <label class="custom-file-label" for="customFile">
                                             @if ($photo)
-                                            {{ $photo->getClientOriginalName() }}
+                                            <strong>{{ $photo->getClientOriginalName() }}</strong>
                                             @else
-                                            Choose file
+                                            Choose Photo
                                             @endif
                                         </label>
                                     </div>
-                                    <div x-show="isUploading" class="w-100">
+                                
+                                    <!-- Progress Bar -->
+                                    <div x-show="isUploading"  class="w-100">
                                         <progress class="w-100" max="100" x-bind:value="progress"></progress>
                                     </div>
                                 </div>
+
+
                             </div>
+
+
                             <div class="modal-footer">
                                 <button wire:click="cancle" id="cancel" type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times mr-1"></i>Cancle</button>
                                 <button type="submit" class="btn btn-primary"><i class="fa fa-save mr-1"></i>
@@ -228,34 +223,8 @@
           </div>
 </div>
 
-@push('styles')
-    @once
-        <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
-    @endonce
-@endpush
 
 @push('scripts')
-    @once
-        <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
-    @endonce
-@endpush
-
-@push('scripts')
-
-<script>
-    FilePond.parse(document.body);
-  
-    FilePond.setOptions({
-      server: {
-          url: '/upload',
-          headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-          }
-      }
-    });
-</script> 
-
-
 <script>
     // Open user add mdal
     window.addEventListener('Add_Edit_UserModalOpen', event =>{
@@ -268,10 +237,6 @@
 
         // Show toast notification alert
         toastr.success(event.detail.message, 'Success!');
-
-        setTimeout(() => {
-            window.location.reload(true);
-        }, 2000);
     });
 
 
@@ -283,23 +248,43 @@
             $('#deleteUserModal').modal('hide');
             toastr.success(event.detail.message, 'Success!');
     });
+
+window.addEventListener('danger', event =>{
+        toastr.error(event.detail.message, 'Success!');
+});
     
 
 </script> 
 
-<script>
+{{-- <script>
     // Get a reference to the file input element
     const inputElement = document.querySelector('input[id="avatar"]');
   
     // Create a FilePond instance
     const pond = FilePond.create(inputElement);
-</script>
+</script> --}}
 
-<script>
+{{-- <script>
+    FilePond.parse(document.body);
+  
+    FilePond.setOptions({
+      server: {
+          url: '/upload',
+          headers: {
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+          },
+          revert:'/revert',
+      },
+    });
+</script> --}}
+
+
+
+{{-- <script>
     $("#cancel").click(function(){
             window.location.reload(true);
     });
-</script>
+</script> --}}
 
 @endpush
  

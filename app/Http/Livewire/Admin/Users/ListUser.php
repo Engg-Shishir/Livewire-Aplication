@@ -19,8 +19,8 @@ class ListUser extends AdminComponent
     public $userId;
     public $photo;
     public $searchUser = null;
-
     public $randomForm = null;
+    public $photoCheck = false;
 
 
     public function cancle()
@@ -47,54 +47,72 @@ class ListUser extends AdminComponent
 
 
     
-    public function createUser(Request $request)
+    public function createUser()
     {
-      $formId = Session::get('formId');
-      $sessionFileName = Session::get('fileName');
-      $sessionExtention = Session::get('fileExtention');
+      // $formId = Session::get('formId');
+      // $sessionFileName = Session::get('fileName');
+      // $sessionExtention = Session::get('fileExtention');
 
+       
+
+      if($this->photo){
+        $extention = $this->photo->extension();
+        // dd($extention);
+        $size = number_format($this->photo->getSize() / 1048576, 2);
+        if($extention != "jpg"){
+          $this->dispatchBrowserEvent('danger',['message'=>'Image Type Should be jpg']);
+        }else{
+           if(!($size<3)){
+            $this->dispatchBrowserEvent('danger',['message'=>'Large file selected.']);
+          }else{
+            $this->photoCheck = true;
+          }
+        }
+      }else{
+        $this->dispatchBrowserEvent('danger',['message'=>'Image field is empty']);
+      }
+
+      
       $validatedData = Validator::make($this->ArrayForUserInputFieldValue,[
         'name' => 'required',
         'email' => 'required|email|unique:users',
         'password' => 'required|confirmed',
       ])->validate();
       $validatedData['password'] = password_hash($validatedData['password'], PASSWORD_DEFAULT);
+     
+      if($this->photoCheck){
+            #<---=== create custom file mame ===----->
+            $imageName = $this->ArrayForUserInputFieldValue['name'].'.'.$this->photo->extension();
+            #<---=== check file already exist or not ===----->
+            $old_image_path = public_path("storage/avatars/$imageName");
+            
+            #<---=== If exist, delete this file ===----->
+            if(File::exists($old_image_path)) {
+                File::delete($old_image_path);
+            }
+            $path = $this->photo->storeAs(
+              'public/avatars', $imageName
+            );
+            $validatedData['avatar'] = $imageName;
 
-
-      if($sessionExtention){
-
-        $old_image_path = public_path("storage/avatars/tmp/$formId");
-
-        File::move(public_path("storage/avatars/tmp/$formId/$sessionFileName"), public_path("storage/avatars/".$this->ArrayForUserInputFieldValue['email'].".".$sessionExtention));
-
-        $validatedData['avatar'] = $this->ArrayForUserInputFieldValue['email'].".".$sessionExtention;
-
-        File::deleteDirectory($old_image_path);
-      }
-
-      #<---=== create custom file mame ===----->
-      $imageName = $this->ArrayForUserInputFieldValue['name'].'.'.$this->photo->extension();
-      #<---=== check file already exist or not ===----->
-      $old_image_path = public_path("storage/avatars/$imageName");
+            User::create($validatedData);
+            $this->reset();
       
-      #<---=== If exist, delete this file ===----->
-      if(File::exists($old_image_path)) {
-          File::delete($old_image_path);
+            $this->dispatchBrowserEvent('Add_Edit_UserModalClose',['message'=>'User added successfully']);
       }
+
+
+      // if($sessionExtention){
+      //   $old_image_path = public_path("storage/avatars/tmp/$formId");
+      //   File::move(public_path("storage/avatars/tmp/$formId/$sessionFileName"), public_path("storage/avatars/".$this->ArrayForUserInputFieldValue['email'].".".$sessionExtention));
+      //   $validatedData['avatar'] = $this->ArrayForUserInputFieldValue['email'].".".$sessionExtention;
+      //   File::deleteDirectory($old_image_path);
+      //}
       #<---=== Move new file inside your specific folder ===----->
       // this file store storage/public/avatars/
-      $path = $this->photo->storeAs(
-        'public/avatars', $imageName
-      );
-      $validatedData['avatar'] = $imageName;
-      
 
-      User::create($validatedData);
-      $this->reset();
       
-      // Modal close when form is submitted
-      $this->dispatchBrowserEvent('Add_Edit_UserModalClose',['message'=>'User added successfully']);
-       
+      
 
     }
 
