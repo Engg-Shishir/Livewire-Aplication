@@ -13,16 +13,15 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <div class="d-flex justify-content-between w-100">
-                                <button class="btn btn-dark" wire:click.prevent="openAddUserModal">
-                                    <i class="fas fa-plus text-danger m2-2"></i>
-                                        @if ($showEditModal)
-                                        <span>Edit User</span>
-                                        @else  
-                                        <span>Add New User</span>
-                                        @endif
-                                </button>
-
-                                <x-search-input wire:model.delay="searchUser"/>
+                            <button class="btn btn-dark" wire:click.prevent="openAddUserModal">
+                                <i class="fas fa-plus text-danger m2-2"></i>
+                                    @if ($showEditModal)
+                                    <span>Edit User</span>
+                                    @else  
+                                    <span>Add New User</span>
+                                    @endif
+                            </button>
+                            <x-search-input wire:model.delay="searchUser"/>
                         </div>
                     </div>
                     <div class="card-body">
@@ -115,11 +114,9 @@
                     <div class="modal-body">
 
                         <form autocomplete="true" wire:submit.prevent="{{ $showEditModal ? 'Edit_And_UpdateUser' : 'createUser'}}">
-
                             <div class="form-group">
                                 <input type="hidden" wire:model="ArrayForUserInputFieldValue.formId"class="form-control" id="hidden" placeholder="Enter your name">
                             </div>
-
                             
                             <div class="form-group">
                                 <label for="name">User Name</label>

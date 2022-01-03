@@ -23,7 +23,7 @@
  <link rel="stylesheet" href="{{ asset('backend/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
 
 <!-- Filepond stylesheet -->
-{{-- <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet"> --}}
+<link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet">
 
  
  {{-- Summernote Html Edittor --}}

@@ -33,6 +33,7 @@ Route::get('admin/appoinment/{PassAppoinment}/edit', UpdateAppoinmentsForm::clas
 
 
 Route::post('upload',[UploadController::class, 'store']);
+Route::delete('upload/revert',[UploadController::class, 'ok']);
 
 
 Route::get('/clear-cache', function() {
