@@ -79,6 +79,21 @@ class ListAppoinments extends AdminComponent
 	}
 
 
+    // Actions for selected item 
+    public function actions($data)
+	{
+        if($data=="delete"){
+            Appoinment::whereIn('id', $this->selectedRows)->delete();
+        }else if($data=="closed"){
+            Appoinment::whereIn('id', $this->selectedRows)->update(['status' => 'CLOSED']);
+        }else{
+            Appoinment::whereIn('id', $this->selectedRows)->update(['status' => 'SCHEDULED']);
+        }
+
+		$this->dispatchBrowserEvent('SuccessAlert', ['message' => 'Successfully Done']);
+		$this->reset(['selectPageRows', 'selectedRows']);
+	}
+
 
     public function render()
     {

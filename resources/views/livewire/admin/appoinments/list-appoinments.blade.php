@@ -17,7 +17,19 @@
                                 </button>
                             </a>
     
-
+                            <div class="btn-group ml-2">
+                                <button type="button" class="btn btn-default">More Action</button>
+                                <button type="button" class="btn btn-default dropdown-toggle dropdown-icon" data-toggle="dropdown" aria-expanded="false">
+                                  <span class="sr-only">Toggle Dropdown</span>
+                                  <div class="dropdown-menu" role="menu">
+                                      <a wire:click.prevent="actions('delete')" class="dropdown-item" href="#">Delete Selected</a>
+                                      <a wire:click.prevent="actions('scheduled')" class="dropdown-item" href="#">Scheduled</a>
+                                      <a wire:click.prevent="actions('closed')" class="dropdown-item" href="#"> Closed</a>
+                                  </div>
+                                </button>
+                            </div>
+                            
+                            <span class="ml-2 mt-1">selected {{ count($selectedRows) }} {{ Str::plural('appointment', count($selectedRows)) }}</span>
    
                             <div class="btn-group ml-auto">
                                <button  wire:click="filterAppoinmentsByStatus " type="button" class="btn {{ is_null($status) ? 'btn-secondary' : 'btn-default' }}">
@@ -109,6 +121,10 @@
         $('#add_Edit_UserForm').modal('hide');
 
         // Show toast notification alert
+        toastr.success(event.detail.message, 'Success!');
+    });
+    
+    window.addEventListener('SuccessAlert', event =>{
         toastr.success(event.detail.message, 'Success!');
     });
 
