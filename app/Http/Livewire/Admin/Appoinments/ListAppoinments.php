@@ -13,6 +13,8 @@ class ListAppoinments extends AdminComponent
     public $showEditModal = false;
     public $appoinmentIdRemoval = null;
 
+	public $selectPageRows = false;
+
 
     // This status variable match appoinments tabale column name.thats whay it conatain all of appoinments table status column information
     public $status = null;
@@ -42,6 +44,20 @@ class ListAppoinments extends AdminComponent
         $this->resetPage();
         $this->status = $status;
     }
+
+
+    /* This is Livewire default updated hook */
+    // this function make like this = updated + selectPageRows;
+    // If any change in this selectPageRows public property this livewire updated hooks call automatically
+    // This hooks also recive default $value perimeter
+	public function updatedSelectPageRows($value)
+	{
+		if ($value) {
+            dd("here");
+		} else {
+		}
+	}
+
 
     public function render()
     {

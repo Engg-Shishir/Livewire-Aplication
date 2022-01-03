@@ -8,7 +8,7 @@
             <div class="row">
             <section class="col-lg-12 connectedSortable">
                 <div class="card">
-                    <div class="card-header d-flex justify-content-between">
+                    <div class="card-header d-flex ">
                         <div class="d-flex justify-content-between w-100">
                             <a href="{{ route("admin.appoinments.create") }}">
                                 <button class="btn btn-dark">
@@ -17,7 +17,7 @@
                                 </button>
                             </a>
    
-                            <div class="btn-group">
+                            <div class="btn-group ml-auto">
                                <button  wire:click="filterAppoinmentsByStatus " type="button" class="btn {{ is_null($status) ? 'btn-secondary' : 'btn-default' }}">
                                  <span class="mr-1">All</span> 
                                  <span class="badge badge-pill badge-info">{{ $appoinmentsCount }}</span>
@@ -40,7 +40,13 @@
                         <table class="table table-hover table-dark">
                             <thead>
                                 <tr>
-                                <th scope="col">#</th>
+                                <th scope="col">
+                                    <div class="icheck-primary d-inline ml-2">
+                                        <input wire:model="selectPageRows" type="checkbox" value="" name="todo2" id="todoCheck2">
+                                        <label for="todoCheck2"></label>
+                                    </div>
+                                    #
+                                </th>
                                 <th scope="col">Client Name</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Time</th>
