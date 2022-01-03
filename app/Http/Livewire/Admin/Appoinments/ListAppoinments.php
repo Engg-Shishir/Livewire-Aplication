@@ -13,6 +13,7 @@ class ListAppoinments extends AdminComponent
     public $showEditModal = false;
     public $appoinmentIdRemoval = null;
 
+	public $selectedRows = [];
 	public $selectPageRows = false;
 
 
@@ -53,21 +54,36 @@ class ListAppoinments extends AdminComponent
 	public function updatedSelectPageRows($value)
 	{
 		if ($value) {
-            dd("here");
+            // when we want to get appoinments id from database , we get id by int type.
+            // But if we want to get id from frontend, we get id by string type.
+            // Thats whay we convert getting id as a string.
+			$this->selectedRows = $this->appointments->pluck('id')->map(function ($id) {
+				return (string) $id;
+			});
 		} else {
+			$this->reset(['selectedRows', 'selectPageRows']);
 		}
 	}
+
+    /* This is Livewire default get Attribute hook */
+    // This function get data when it is call from some where
+    // this function make like this = get + ClassName + Property;
+	public function getAppointmentsProperty()
+	{
+        return Appoinment::with('client') 
+        ->when($this->status, function($query,$status){
+            return $query->where('status', $status);
+        })
+        ->latest()
+        ->paginate(2);
+	}
+
 
 
     public function render()
     {
-        $appoinments = Appoinment::with('Client')
-            // Filter data with status
-            ->when($this->status, function($query, $status){
-               return $query->where('status',$status);
-            })
-            ->latest()
-            ->paginate(5);
+        $appoinments = $appoinments = $this->appointments;
+        // Here $this->appointments indicate getAppointmentsProperty() livewire hook.
 
             
         $appoinmentsCount = Appoinment::count();

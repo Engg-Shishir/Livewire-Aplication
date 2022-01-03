@@ -16,6 +16,8 @@
                                         <span>Add New Appoinments</span>
                                 </button>
                             </a>
+    
+
    
                             <div class="btn-group ml-auto">
                                <button  wire:click="filterAppoinmentsByStatus " type="button" class="btn {{ is_null($status) ? 'btn-secondary' : 'btn-default' }}">
