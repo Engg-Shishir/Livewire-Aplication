@@ -7,6 +7,7 @@ use App\Http\Livewire\Admin\Appoinments\ListAppoinments;
 use App\Http\Livewire\Admin\Appoinments\CreateAppoinmentsForm;
 use App\Http\Livewire\Admin\Appoinments\UpdateAppoinmentsForm;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\ErrorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,18 +25,22 @@ Route::get('/', function () {
 });
 
 // This middleware permit this route access only authenticated users
-Route::group(['middleware' => 'auth'],function (){
+// here admin is middleware name, which is defined in kernal.php file
+Route::group(['middleware' => ['auth','admin']],function (){
     Route::get('admin/dashboard', DashboardController::class)->name('admin.dashboard');
     Route::get('admin/users', ListUser::class)->name('admin.users');
     Route::get('admin/appoinments', ListAppoinments::class)->name('admin.appoinments');
     Route::get('admin/appoinments/create', CreateAppoinmentsForm::class)->name('admin.appoinments.create');
     Route::get('admin/appoinment/{PassAppoinment}/edit', UpdateAppoinmentsForm::class)->name('admin.appoinments.edit');
-});
+}); 
 
 
 
 
 
+
+
+Route::get('error', [ErrorController::class, 'errors'])->name('error');
 
 
 
