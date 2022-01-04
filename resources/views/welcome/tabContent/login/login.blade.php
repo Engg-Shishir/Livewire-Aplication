@@ -1,6 +1,7 @@
 
-<div id="login" class="content tabcontent" style="display: block;height:75vh;">
-    <div class="row">
+<div id="login" class="content tabcontent" style="display: block;">
+ <div class="codeBox" style="height: 72vh; display:flex;align-items:center;justify-content:center;">
+    <div class="row"  style="width:100%;">
         <div class="col-md-7 mx-auto">
             {{-- This login form and layout.login form are same --}}
             <div class="card">
@@ -21,4 +22,5 @@
             </div>
         </div>
     </div>
+ </div>
 </div>

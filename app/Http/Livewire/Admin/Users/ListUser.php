@@ -82,7 +82,7 @@ class ListUser extends AdminComponent
      
       if($this->photoCheck){
             #<---=== create custom file mame ===----->
-            $imageName = $this->ArrayForUserInputFieldValue['name'].'.'.$this->photo->extension();
+            $imageName = $this->ArrayForUserInputFieldValue['email'].'.'.$this->photo->extension();
             #<---=== check file already exist or not ===----->
             $old_image_path = public_path("storage/avatars/$imageName");
             
