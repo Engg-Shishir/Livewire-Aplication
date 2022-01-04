@@ -23,12 +23,21 @@ Route::get('/', function () {
     return view('welcome.welcome');
 });
 
+// This middleware permit this route access only authenticated users
+Route::group(['middleware' => 'auth'],function (){
+    Route::get('admin/dashboard', DashboardController::class)->name('admin.dashboard');
+    Route::get('admin/users', ListUser::class)->name('admin.users');
+    Route::get('admin/appoinments', ListAppoinments::class)->name('admin.appoinments');
+    Route::get('admin/appoinments/create', CreateAppoinmentsForm::class)->name('admin.appoinments.create');
+    Route::get('admin/appoinment/{PassAppoinment}/edit', UpdateAppoinmentsForm::class)->name('admin.appoinments.edit');
+});
 
-Route::get('admin/dashboard', DashboardController::class)->name('admin.dashboard');
-Route::get('admin/users', ListUser::class)->name('admin.users');
-Route::get('admin/appoinments', ListAppoinments::class)->name('admin.appoinments');
-Route::get('admin/appoinments/create', CreateAppoinmentsForm::class)->name('admin.appoinments.create');
-Route::get('admin/appoinment/{PassAppoinment}/edit', UpdateAppoinmentsForm::class)->name('admin.appoinments.edit');
+
+
+
+
+
+
 
 
 

@@ -14,9 +14,9 @@
         <div class="tab">
             <button class="tablinks" onclick="openCity(event, 'php')">PHP</button>
             <button class="tablinks" onclick="openCity(event, 'laravel')">Laravel</button>
-            <button class="tablinks active" onclick="openCity(event, 'livewire')">Livewire</button>
+            <button class="tablinks" onclick="openCity(event, 'livewire')">Livewire</button>
             <button class="tablinks" onclick="openCity(event, 'reactjs')">REACT JS</button>
-            <button class="tablinks" onclick="openCity(event, 'login')">
+            <button class="tablinks active" onclick="openCity(event, 'login')">
                 <i class="fas fa-user-shield"></i>
                 Login
             </button>

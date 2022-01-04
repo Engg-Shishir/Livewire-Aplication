@@ -7,11 +7,11 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           {{-- <img src="{{ auth()->user()->avatar_url }}" id="profileImage"  class="img-circle elevation-2" alt="User Image"> --}}
-          <img src="{{ asset('backend/dist/img/user1-128x128.jpg') }}" id="profileImage"  class="img-circle elevation-2" alt="User Image">
+          <img src="{{ auth()->user()->avatar_url }}" id="profileImage"  class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           {{-- <a href="#" class="d-block" x-ref="username">{{ auth()->user()->name }}</a> --}}
-          <a href="#" class="d-block" x-ref="username">Shishir Bhuiyan</a>
+          <a href="#" class="d-block" x-ref="username">{{ auth()->user()->name }}</a>
         </div>
       </div>
 
@@ -74,7 +74,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <form method="POST" action="">
+            <form method="POST" action="{{ route('logout') }}">
               @csrf
               <a href="" onclick="event.preventDefault(); this.closest('form').submit();" class="nav-link">
                 <i class="nav-icon fas fa-sign-out-alt"></i>

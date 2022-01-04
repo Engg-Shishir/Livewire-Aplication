@@ -1,5 +1,5 @@
 
-    <div id="livewire" class="content tabcontent" style="display: block;">
+    <div id="livewire" class="content tabcontent" >
         <div class="card">
             <div class="card-header">
                 <Strong>Shishir | Livewire</Strong>
