@@ -10,6 +10,8 @@ use  App\Http\Livewire\Admin\AdminComponent;
 use Livewire\WithFileUploads;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\Rule;
+
 class ListUser extends AdminComponent
 {
     use  WithFileUploads;
@@ -163,6 +165,21 @@ class ListUser extends AdminComponent
         $this->user->update($validatedData);
 
         $this->dispatchBrowserEvent('Add_Edit_UserModalClose',['message'=>'User Updated successfully']);
+    }
+
+    public function changeRole(User $user, $role)
+    {
+      // dd($role);
+      Validator::make(['role' => $role],[
+        'role' => [
+          'required',
+          Rule::in(User::ROLE_ADMIN, User::ROLE_USER),
+        ],
+      ])->validate();
+  
+      $user->update(['role' => $role]);
+  
+      $this->dispatchBrowserEvent('successAlert', ['message' => "Role changed to {$role} successfully."]);
     }
 
 

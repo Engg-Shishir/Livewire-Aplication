@@ -19,7 +19,6 @@
   
 
   @livewireStyles
-  @livewireScripts
 
   
 
@@ -56,6 +55,7 @@
 
 
 
+@livewireScripts
 {{-- All js resources stored there --}}
 @include('layouts.js')
 </body>

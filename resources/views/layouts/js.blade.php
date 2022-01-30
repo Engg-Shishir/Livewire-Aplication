@@ -39,7 +39,8 @@
 {{-- Summernote Html Edittor --}}
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-
+{{-- Select2 --}}
+<script src="{{ asset('backend/plugins/select2/js/select2.full.min.js') }}"></script>
 
 {{-- Sweet Alert Js --}}
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -51,6 +52,7 @@
 
   <!-- Load FilePond library -->
   <script src="https://unpkg.com/filepond/dist/filepond.js"></script>
+
 
 
   <!-- Turn all file input elements into ponds -->
@@ -81,6 +83,15 @@
 </script>
 
 
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
 
-
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+  });
+</script>
 @stack('scripts')

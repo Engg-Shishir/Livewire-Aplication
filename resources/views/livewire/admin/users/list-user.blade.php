@@ -52,19 +52,17 @@
                                 @forelse ($users as $key => $user)
                                     <tr>
                                     <th scope="row">{{ $key + 1 }}</th>
-                                    <td></td>
                                     <td>
                                         <img src="{{ $user['avatar_url'] }}" style="width: 70px; height:70px;">
                                     </td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td></td>
-                                    {{-- <td>
-                                      <select class="form-control" wire:change="changeRole({{ $user }}, $event.target.value)">
+                                    <td>
+                                      <select class="" wire:change="changeRole({{ $user }}, $event.target.value)">
                                         <option value="admin" {{ ($user->role === 'admin') ? 'selected' : '' }}>ADMIN</option>
                                         <option value="user" {{ ($user->role === 'user') ? 'selected' : '' }}>USER</option>
                                       </select>
-                                    </td> --}}
+                                    </td>
                                     <td>
                                         <a href="" wire:click.prevent="showEditUserModal({{ $user }})">
                                             <i class="fas fa-edit text-warning m2-2"></i>
@@ -249,10 +247,18 @@
             toastr.success(event.detail.message, 'Success!');
     });
 
-window.addEventListener('danger', event =>{
-        toastr.error(event.detail.message, 'Success!');
-});
+    window.addEventListener('danger', event =>{
+            toastr.error(event.detail.message, 'Success!');
+    });
     
+
+    window.addEventListener('danger', event =>{
+            toastr.error(event.detail.message, 'Success!');
+    });
+    
+    window.addEventListener('successAlert', event =>{
+        toastr.success(event.detail.message, 'Success!');
+    });
 
 </script> 
 

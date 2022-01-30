@@ -66,7 +66,7 @@
           </li>
 
           <li class="nav-item">
-            <a x-ref="profileLink" href="" class="nav-link {{ request()->is('admin/profile') ? 'active' : '' }}">
+            <a x-ref="profileLink" href="{{ route('admin.profile') }}" class="nav-link {{ request()->is('admin/profile') ? 'active' : '' }}">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Profile
